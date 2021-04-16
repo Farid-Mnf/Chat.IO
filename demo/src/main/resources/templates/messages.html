@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Messages</title>
+</head>
+<body>
+	<h1>Messages for user:<span th:text="${user.name}">User</span></h1>
+	<br>
+	
+	<div th:each="message : ${messages}">
+		<h4 th:text="${message.content}">
+			Message N
+		</h4>
+		<hr>
+	</div>
+</body>
+</html>
