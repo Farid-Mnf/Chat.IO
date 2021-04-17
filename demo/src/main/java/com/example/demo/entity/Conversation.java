@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,7 +18,7 @@ public class Conversation {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	long id;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="sender_id")
 	User sender;
 

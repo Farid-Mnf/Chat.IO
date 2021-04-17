@@ -12,23 +12,4 @@ import com.example.demo.service.UserService;
 @Controller
 public class SignupController {
 
-	@Autowired
-	UserService userService;
-
-	@RequestMapping("/sign-up")
-	public String signUp(Model model) {
-		model.addAttribute("user", new User());
-		return "sign-up";
-	}
-
-	@RequestMapping("/new-user")
-	public String finishSign(@ModelAttribute User user, Model model) {
-		// save user to h2 database
-		userService.saveOrUpdate(user);
-
-		model.addAttribute("user", user);
-		model.addAttribute("allSystemContacts", userService.getAllContacts(user.getId()));
-		// display users in home
-		return "contacts";
-	}
 }

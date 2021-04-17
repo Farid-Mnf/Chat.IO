@@ -16,11 +16,33 @@ public class Message {
 	@JoinColumn(name="conversation_id")
 	Conversation conversation;
 	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="user_id")
+	User user;
+	
 	public Message() {}
 
 	public Message(String content, Date date) {
 		this.content = content;
 		this.date = date;
+	}
+	
+	
+
+	public Conversation getConversation() {
+		return conversation;
+	}
+
+	public void setConversation(Conversation conversation) {
+		this.conversation = conversation;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public long getId() {
