@@ -17,18 +17,24 @@
 </head>
 <body>
 	<div class="container">
-		<a class="btn btn-outline-dark" href="/login">Login</a>
-		<h3 class="alert alert-dark mt-3" role="alert">Sign up to enjoy
-			chatting with your friends!</h3>
+		<h3 class="alert alert-info mt-3" role="alert">
+			<a class="btn btn-outline-dark" href="/showLogin">Login</a>
+			<a 	class="btn btn-outline-dark" 
+				href="#"
+				th:href="@{/sign-up}"
+				>
+				Sign-Up
+			</a>
+		</h3>
 
 		<form action="#" th:action="@{/new-user}" th:object="${user}"
 			method="post">
 			<div class="mb-3">
-				<label for="InputName" class="form-label">Name address</label> <input
+				<label for="InputName" class="form-label">Name</label> <input
 					th:field="*{name}" type="text" class="form-control" id="InputName">
 			</div>
 			<div class="mb-3">
-				<label for="InputEmail1" class="form-label">Email address</label> <input
+				<label for="InputEmail1" class="form-label">Email</label> <input
 					th:field="*{email}" type="email" class="form-control"
 					id="InputEmail1">
 			</div>

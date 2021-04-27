@@ -24,16 +24,17 @@ public class ConversationController {
 	@Autowired
 	UserService userService;
 	
-	@GetMapping("/connect/{sender_id}/{reciever_id}")
-	public String makeConversation(@PathVariable(value="sender_id") long sender_id,
-			@PathVariable(value="reciever_id") long reciever_id, Model model) {
-		User user = userService.getUser(sender_id).get();
-		Conversation conv = new Conversation(user,reciever_id);
-		User reciever = userService.getUser(reciever_id).get();
+	@GetMapping("/connect/{senderId}/{recieverId}")
+	public String makeConversation(@PathVariable(value="senderId") long senderId,
+			@PathVariable(value="recieverId") long recieverId, Model model) {
+		User user = userService.getUser(senderId).get();
+		Conversation conv = new Conversation(user,recieverId);
 		convService.save(conv);
+		User contact = userService.getUser(recieverId).get();
+		model.addAttribute("convId", conv.getId());
 		model.addAttribute("user", user);
-		model.addAttribute("reciever", reciever);
-		return "chat";
+		model.addAttribute("contact", contact);
+		return "redirect:/conversations/" + user.getId();
 	}
 	
 	@GetMapping("/conversations/{userId}")
@@ -42,16 +43,15 @@ public class ConversationController {
 		Set<Contact> contacts = new HashSet<>();
 		for(Conversation conv : convs) {
 			if(conv.getSender().getId()==userId) {
-				User user = userService.getUser(conv.getReciever_id()).get();
+				User user = userService.getUser(conv.getRecieverId()).get();
 				Contact contact = new Contact(user.getName(), user.getId(), conv.getId());
 				contacts.add(contact);
-			}else if(conv.getReciever_id()==userId) {
+			}else if(conv.getRecieverId()==userId) {
 				User user = userService.getUser(conv.getSender().getId()).get();
 				Contact contact = new Contact(user.getName(), user.getId(), conv.getId());
-				contacts.add(contact);				
+				contacts.add(contact);
 			}
 		}
-		
 		
 		User user = userService.getUser(userId).get();
 		model.addAttribute("user", user);

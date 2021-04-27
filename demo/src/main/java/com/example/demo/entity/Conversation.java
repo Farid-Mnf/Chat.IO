@@ -22,16 +22,16 @@ public class Conversation {
 	@JoinColumn(name="sender_id")
 	User sender;
 
-	long reciever_id;
+	long recieverId;
 
 	@OneToMany(mappedBy="conversation")
 	Set<Message> messages = new HashSet<>();
 	
 	public Conversation() {	}
 
-	public Conversation(User sender, long reciever_id) {
+	public Conversation(User sender, long recieverId) {
 		this.sender = sender;
-		this.reciever_id = reciever_id;
+		this.recieverId = recieverId;
 	}
 
 	public long getId() {
@@ -50,12 +50,12 @@ public class Conversation {
 		this.sender = sender;
 	}
 
-	public long getReciever_id() {
-		return reciever_id;
+	public long getRecieverId() {
+		return recieverId;
 	}
 
-	public void setReciever_id(long reciever_id) {
-		this.reciever_id = reciever_id;
+	public void setRecieverId(long recieverId) {
+		this.recieverId = recieverId;
 	}
 
 	public Set<Message> getMessages() {
@@ -65,4 +65,5 @@ public class Conversation {
 	public void setMessages(Set<Message> messages) {
 		this.messages = messages;
 	}
+
 }
