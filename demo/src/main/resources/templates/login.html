@@ -9,6 +9,7 @@
 	rel="stylesheet"
 	integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
 	crossorigin="anonymous">
+<link href="/style.css" rel="stylesheet">
 
 </head>
 
@@ -21,7 +22,10 @@
 				>
 					Sign-Up
 			</a>
+			<img alt="logo" src="/logo.png" class="logo">
+			
 		</h3>
+		
 	
 		<form action="#" th:action="@{/login}" th:object="${user}"
 			method="post">

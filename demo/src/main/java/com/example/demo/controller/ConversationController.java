@@ -20,42 +20,55 @@ public class ConversationController {
 
 	@Autowired
 	ConversationService convService;
-	
+
 	@Autowired
 	UserService userService;
-	
+
+	// connect two users with the id of the two user connected
 	@GetMapping("/connect/{senderId}/{recieverId}")
 	public String makeConversation(@PathVariable(value="senderId") long senderId,
 			@PathVariable(value="recieverId") long recieverId, Model model) {
+
+		// get the User object of the user who sent the connection request
 		User user = userService.getUser(senderId).get();
+
+		// create Conversation between 2 users
 		Conversation conv = new Conversation(user,recieverId);
+
+		// finally save that Conversation
 		convService.save(conv);
-		User contact = userService.getUser(recieverId).get();
-		model.addAttribute("convId", conv.getId());
-		model.addAttribute("user", user);
-		model.addAttribute("contact", contact);
+
+		// redirect the request to conversations controller with the user id
 		return "redirect:/conversations/" + user.getId();
 	}
 	
 	@GetMapping("/conversations/{userId}")
 	public String getUserConversations(@PathVariable("userId") long userId, Model model) {
+		// get list of conversations
 		Iterable<Conversation> convs = convService.getConversations();
 		Set<Contact> contacts = new HashSet<>();
 		for(Conversation conv : convs) {
+			// check if user exists in either sender or receiver attribute/column
 			if(conv.getSender().getId()==userId) {
+				// if Sender then add to contacts list
 				User user = userService.getUser(conv.getRecieverId()).get();
 				Contact contact = new Contact(user.getName(), user.getId(), conv.getId());
 				contacts.add(contact);
 			}else if(conv.getRecieverId()==userId) {
+				// if Receiver then add to contacts list
 				User user = userService.getUser(conv.getSender().getId()).get();
 				Contact contact = new Contact(user.getName(), user.getId(), conv.getId());
 				contacts.add(contact);
 			}
 		}
 		
+		/* get user object that is needed in HTML rendering with Thymeleaf
+		 * and store the object in the model alongside contacts list 
+		 */
 		User user = userService.getUser(userId).get();
 		model.addAttribute("user", user);
 		model.addAttribute("contacts", contacts);
+		// show that list of contacts in the conversations.html page
 		return "conversations";
 	}
 	

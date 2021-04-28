@@ -27,6 +27,7 @@ public class MessageController {
 	@Autowired
 	ConversationService convService;
 	
+	// load messages in specific conversations between two users
 	@GetMapping("/messages/{userId}/{contactId}/{convId}")
 	public String getMessages(	@PathVariable("userId") long userId,
 								@PathVariable("contactId") long contactId,
@@ -38,16 +39,13 @@ public class MessageController {
 		Conversation conv = convService.getConversation(convId).get();
 		Set<Message> messages = conv.getMessages();
 		List<Message> sortedMessages = new ArrayList<Message>(messages);
+		// sort messages by date
 		sortedMessages.sort((o1, o2) -> o1.getDate().compareTo(o2.getDate()));
-		
-		for(Message message : sortedMessages) {
-			System.out.println(message.getContent()+" (" + message.getUser().getName() + ")");
-		}
+		// store user, contact, messages, convId in model to be used in chat.html
 		model.addAttribute("user", user);
 		model.addAttribute("contact", contact);
 		model.addAttribute("messages", sortedMessages);
 		model.addAttribute("convId", convId);
 		return "chat";
 	}
-
 }

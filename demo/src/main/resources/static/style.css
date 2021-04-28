@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+.container {
+	width: 500px
+}
+.logo{
+	margin-top:-10px;border:2px solid #ddd;border-radius:15%;float:right;
+	width:60px; height:60px;
+}
+
+html, body{
+	height:100%
+}
+.bg-info {
+	min-width: 70px;
+	height: 40px;
+	padding-top: 10px;
+	font-size: 20px
+}
+.disp-block{
+	display:block;
+	margin:10px;
+	padding:10px;
+	overflow-wrap: break-word;
+ 		word-wrap: break-word;
+}
+.left-margin{
+	margin-left:50px
+}
+.right-margin{
+	margin-right:50px
+}
+.scroll-box{
+	overflow-y:scroll;
+	min-height:200px;
+	max-height:450px;
+}
+.message-area{
+	position: absolute;
+    width: 90%;
+    bottom: 10px;
+    left: 5%;
+}
+.bord{
+	border-top:none;
+	border-bottom:none;
+	border-right:1px solid black;
+	border-left:1px solid black;
+}

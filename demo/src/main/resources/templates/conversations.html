@@ -10,27 +10,23 @@
 	integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
 	crossorigin="anonymous">
 
-</head>
-
+<link href="/style.css" rel="stylesheet">
 <style>
 .centered{
 	width:500px;
 	margin:0 auto
 }
 </style>
+</head>
 
 <body>
 	<div class="container">
-		<h3 class="alert alert-info mt-4 row" role="alert">
-			<a 	class="btn btn-outline-dark col" 
-				style="width:20px" 
-				href="#" 
-				th:href="@{/sign-up}"
-				>
-				Sign-Up
-			</a>
-			<a 	class="col-9"></a>
-			<span	class="badge bg-secondary col"
+		<h3 class="alert alert-info mt-4" role="alert">
+			<a class="btn btn-outline-dark" href="#" th:href="@{/search-contact/}+${user.id}">Search Contact</a>
+			<a class="btn btn-outline-dark" href="#" th:href="@{/showLogin}">Login</a>
+			<img alt="logo" src="/logo.png" class="logo">
+			<span	class="badge bg-info col"
+					style="float:right; background: #cff4fc"
 					th:text="${user.name}">
 				User Name
 			</span>
