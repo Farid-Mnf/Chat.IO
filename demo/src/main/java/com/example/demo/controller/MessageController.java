@@ -33,7 +33,6 @@ public class MessageController {
 								@PathVariable("contactId") long contactId,
 								@PathVariable("convId") long convId,
 								Model model) {
-		
 		User user = userService.getUser(userId).get();
 		User contact = userService.getUser(contactId).get();
 		Conversation conv = convService.getConversation(convId).get();

@@ -36,7 +36,7 @@
 
 		<div class="alert alert-secondary" role="alert" style="min-height:90%">
 			<h2 class="badge bg-info" th:text=${contact.name}>
-				Reciever name
+				Receiver name
 			</h2>
 			<hr>
 
@@ -71,28 +71,34 @@
 
 	<script th:inline="javascript">
 		function send(){
+			// assign back-end user-id and conversation-id using Thymeleaf
+			// to javascript variables
 			var userId = /*[[${user.id}]]*/ 'User Id';
 			var convId = /*[[${convId}]]*/ 'Conversation id';
 			
-			
-			console.log("user id:", userId, " -- convId:", convId);
+
+			// get message from input text field
 			var message = document.getElementById("input").value;
+			// clear previous input text when Send button is clicked
+			document.getElementById("input").value = "";
+			// create JSON object
 			var data = JSON.stringify({"userId":userId,"convId":convId,"content":message});
-			console.log(data);
+			
+			// open Asynchronous request
   			var xhttp = new XMLHttpRequest();
 
 			xhttp.onreadystatechange = function() {
-			    if (this.readyState == 4 && this.status == 200) {
+				// create new Div for new message and append to Chat-box
+				if (this.readyState == 4 && this.status == 200) {
 			       var chatBox = document.getElementById('chat-items');
 			       var classList = 'alert alert-info disp-block left-margin';
 			       var div = document.createElement('div');
 			       div.innerText = message;
-			       div.classList = classList;
+			       div.classList = classList;	
 			       chatBox.appendChild(div);
-		       
-
 			    }
 			};
+			
 			xhttp.open("POST", "/message", true);
 			xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 			xhttp.send(data);
