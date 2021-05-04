@@ -15,54 +15,63 @@
 </head>
 
 <body>
-	<div class="container" style="height:90%">
+	<div class="container" style="height: 90%">
 
-		<h3 class="alert alert-info row" role="alert" style="min-height:5%">
-			
-			<a 	class="bord btn btn-outline-dark col" href="#"
-				th:href="@{/conversations/}+${user.id}">My Chats</a>
-			
-			<a	class="bord btn btn-outline-dark col" href="#" th:href="@{/sign-up}">Sign-Up</a>
-			<a	class="bord btn btn-outline-dark col" href="#" th:href="@{/search-contact/}+${user.id}">Search Contact</a>
-			
-			<a class="bord btn btn-outline-dark col" href="#" th:href="@{/showLogin}">Login</a>
-			<span class="col"></span>
-			<span	class="badge bg-secondary col"
-					th:text="${user.name}">
-				User Name
-			</span>
-			<img alt="logo" src="/logo.png" class="logo">
-		</h3>
+		<!-- Navigation -->
+		<nav class="navbar navbar-expand-lg static-top">
+			<div class="container">
+				<a class="navbar-brand" href="#"> <img
+					src="/logo.png" alt="logo" width=50 height=50>
+				</a>
+				<div class="collapse navbar-collapse" id="navbarResponsive">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item"><a class="nav-link border border-primary" href="#" th:text="${user.name}">User Name</a>
+						</li>
+						
+						
+						<li class="nav-item"><a class="nav-link" href="#" 
+							th:href="@{/search-contact/}+${user.id}">Find</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="#"
+							th:href="@{/conversations/}+${user.id}">Chats</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#" th:href="@{/}">
+							Logout
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
 
-		<div class="alert alert-secondary" role="alert" style="min-height:90%">
-			<h2 class="badge bg-info" th:text=${contact.name}>
-				Receiver name
+
+
+		<div class="alert alert-secondary" role="alert"
+			style="min-height: 90%">
+			<h2 class="badge bg-info" th:text=${contact.name}>Receiver name
 			</h2>
 			<hr>
 
 			<div class="scroll-box" id="chat-items">
 				<div th:each="message : ${messages}">
 					<!-- IF -->
-					<div 	th:if=${message.user.id==user.id} 
-							class="alert alert-info disp-block left-margin"
-							th:text="${message.content}">
-								User
-					</div>
+					<div th:if=${message.user.id==user.id}
+						class="alert alert-info disp-block left-margin"
+						th:text="${message.content}">User</div>
 					<!-- ELSE -->
-					<div 	th:unless=${message.user.id==user.id} 
-							class="alert alert-dark disp-block right-margin"
-							th:text="${message.content}">
-								Contact
-					</div>
+					<div th:unless=${message.user.id==user.id}
+						class="alert alert-dark disp-block right-margin"
+						th:text="${message.content}">Contact</div>
 				</div>
 			</div>
-			
+
 			<div class="input-group message-area">
 				<input id="input" type="text" class="form-control"
 					placeholder="Write a message!" aria-label="Write a message!"
 					aria-describedby="button-addon2">
-				<button onclick="send()" class="btn btn-outline-secondary" type="button"
-					id="button-addon2">Send</button>
+				<button onclick="send()" class="btn btn-outline-secondary"
+					type="button" id="button-addon2">Send</button>
 			</div>
 		</div>
 
@@ -70,41 +79,48 @@
 
 
 	<script th:inline="javascript">
-		function send(){
+		function send() {
 			// assign back-end user-id and conversation-id using Thymeleaf
 			// to javascript variables
-			var userId = /*[[${user.id}]]*/ 'User Id';
-			var convId = /*[[${convId}]]*/ 'Conversation id';
-			
+			var userId = /*[[${user.id}]]*/'User Id';
+			var convId = /*[[${convId}]]*/'Conversation id';
 
 			// get message from input text field
 			var message = document.getElementById("input").value;
 			// clear previous input text when Send button is clicked
 			document.getElementById("input").value = "";
 			// create JSON object
-			var data = JSON.stringify({"userId":userId,"convId":convId,"content":message});
-			
+			var data = JSON.stringify({
+				"userId" : userId,
+				"convId" : convId,
+				"content" : message
+			});
+
 			// open Asynchronous request
-  			var xhttp = new XMLHttpRequest();
+			var xhttp = new XMLHttpRequest();
 
 			xhttp.onreadystatechange = function() {
 				// create new Div for new message and append to Chat-box
 				if (this.readyState == 4 && this.status == 200) {
-			       var chatBox = document.getElementById('chat-items');
-			       var classList = 'alert alert-info disp-block left-margin';
-			       var div = document.createElement('div');
-			       div.innerText = message;
-			       div.classList = classList;	
-			       chatBox.appendChild(div);
-			    }
+					var chatBox = document.getElementById('chat-items');
+					var classList = 'alert alert-info disp-block left-margin';
+					var div = document.createElement('div');
+					div.innerText = message;
+					div.classList = classList;
+					chatBox.appendChild(div);
+					chatBox.scrollTop = chatBox.scrollHeight;
+				}
 			};
-			
+
 			xhttp.open("POST", "/message", true);
-			xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+			xhttp.setRequestHeader("Content-Type",
+					"application/json;charset=UTF-8");
 			xhttp.send(data);
-			
-			
+
 		}
+		var chatBox = document.getElementById('chat-items');
+		chatBox.scrollTop = chatBox.scrollHeight;
+
 	</script>
 </body>
 

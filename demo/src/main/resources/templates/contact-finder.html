@@ -14,14 +14,37 @@
 
 <body>
 	<div class="container">
-		<h3 class="alert alert-info mt-4" role="alert">
-			<a class="btn btn-outline-dark" href="#" th:href="@{/sign-up}">Sign-Up</a>
-			<a class="btn btn-outline-dark" href="#" th:href="@{/showLogin}">Login</a>
-			<a class="btn btn-outline-dark" href="#" th:href="@{/conversations/}+${user.id}">My Contacts</a>
-			<img alt="logo" src="/logo.png" class="logo">
-		</h3>
+		<!-- Navigation -->
+		<nav class="navbar navbar-expand-lg static-top">
+			<div class="container">
+				<a class="navbar-brand" href="#"> <img
+					src="/logo.png" alt="logo" width=50 height=50>
+				</a>
+				<div class="collapse navbar-collapse" id="navbarResponsive">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item"><a class="nav-link border border-primary" href="#" th:text="${user.name}">User Name</a>
+						</li>
+						
+						
+						<li class="nav-item"><a class="nav-link" href="#" 
+							th:href="@{/search-contact/}+${user.id}">Find</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="#"
+							th:href="@{/conversations/}+${user.id}">Chats</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#" th:href="@{/}">
+							Logout
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+
 		
-		<h3 class="b-dark">Find new Contact!</h3>
+		<h3 class="b-dark" style="text-align:center">Find new Contact</h3>
 		
 		<form action="#" th:action="@{/findContact/}+${user.id}" method="POST">
 			<div class="mb-3">

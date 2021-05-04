@@ -16,22 +16,44 @@
 }
 </style>
 </head>
-<body>
+<body onload="clock()">
 	<div class="container">
-		<div class="card" style="width: 18rem;margin:20px auto">
-		  <img src="logo.png" class="card-img-top" alt="logo">
-		  <div class="card-body">
-		    <span class="label" >Chat.io</span><br>
-		    <p class="card-text text-center">Join and Engage with your Friends</p>
-			<div class="row">
-			<span class="col"></span>
-				<a class="btn btn-outline-dark col-4" href="/sign-up">Sign-Up</a>
+		<div class="card" style="width: 18rem;margin:20px auto">	
+			<h1 class="badge bg-info" id="clock">Time</h1>
+			<img src="logo.png" class="card-img-top" alt="logo">
+			<div class="card-body">
+				<span class="label" >Chat.io</span><br>
+			    <p class="card-text text-center">Join and Engage with your Friends</p>
+				<div class="row">
 				<span class="col"></span>
-				<a class="btn btn-outline-dark col-4" href="/showLogin">Login</a>
-			<span class="col"></span>
+					<a class="btn btn-outline-dark col-4" href="/sign-up">Sign-Up</a>
+					<span class="col"></span>
+					<a class="btn btn-outline-dark col-4" href="/showLogin">Login</a>
+				<span class="col"></span>
+				</div>
 			</div>
-		  </div>
 		</div>
 	</div>
+	
+	<script>
+		function clock(){
+			var clockElement = document.getElementById('clock');
+			var xhttp = new XMLHttpRequest();
+	
+			xhttp.onreadystatechange = function() {
+				// create new Div for new message and append to Chat-box
+				if (this.readyState == 4 && this.status == 200) {
+					clockElement.innerText = "Time: " + this.responseText;
+			    }
+			};
+			xhttp.open("GET", "/clock", true);
+			xhttp.send();
+			
+			setTimeout(function() {
+			    console.log('hello');
+			      clock();           
+			  }, 2000)
+		}
+	</script>
 </body>
 </html>
