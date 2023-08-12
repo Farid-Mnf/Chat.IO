@@ -29,6 +29,8 @@ public class ConversationController {
 	public String makeConversation(@PathVariable(value="senderId") long senderId,
 			@PathVariable(value="recieverId") long recieverId, Model model) {
 
+		// TODO: check if already made a conversation
+
 		// get the User object of the user who sent the connection request
 		User user = userService.getUser(senderId).get();
 
