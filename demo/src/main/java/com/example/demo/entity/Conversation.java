@@ -1,16 +1,8 @@
 package com.example.demo.entity;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Conversation {
@@ -22,16 +14,16 @@ public class Conversation {
 	@JoinColumn(name="sender_id")
 	User sender;
 
-	long recieverId;
+	long receiverId;
 
 	@OneToMany(mappedBy="conversation")
-	Set<Message> messages = new HashSet<>();
+	List<Message> messages = new ArrayList<>();
 	
 	public Conversation() {	}
 
-	public Conversation(User sender, long recieverId) {
+	public Conversation(User sender, long receiverId) {
 		this.sender = sender;
-		this.recieverId = recieverId;
+		this.receiverId = receiverId;
 	}
 
 	public long getId() {
@@ -50,19 +42,19 @@ public class Conversation {
 		this.sender = sender;
 	}
 
-	public long getRecieverId() {
-		return recieverId;
+	public long getReceiverId() {
+		return receiverId;
 	}
 
-	public void setRecieverId(long recieverId) {
-		this.recieverId = recieverId;
+	public void setReceiverId(long recieverId) {
+		this.receiverId = recieverId;
 	}
 
-	public Set<Message> getMessages() {
+	public List<Message> getMessages() {
 		return messages;
 	}
 
-	public void setMessages(Set<Message> messages) {
+	public void setMessages(List<Message> messages) {
 		this.messages = messages;
 	}
 

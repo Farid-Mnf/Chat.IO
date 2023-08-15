@@ -11,20 +11,25 @@ public class Message {
 	long id;
 	String content;
 	Date date;
-	
+	Boolean seen;
+
+	Long senderId;
+
+	Long receiverId;
+
 	@ManyToOne
 	@JoinColumn(name="conversation_id")
 	Conversation conversation;
-	
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="user_id")
-	User user;
+
 	
 	public Message() {}
 
-	public Message(String content, Date date) {
+	public Message(String content, Date date, boolean seen, Long senderId, Long receiverId) {
 		this.content = content;
 		this.date = date;
+		this.seen = seen;
+		this.senderId = senderId;
+		this.receiverId = receiverId;
 	}
 	
 	
@@ -35,14 +40,6 @@ public class Message {
 
 	public void setConversation(Conversation conversation) {
 		this.conversation = conversation;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 
 	public long getId() {
@@ -67,5 +64,29 @@ public class Message {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public Boolean getSeen() {
+		return seen;
+	}
+
+	public void setSeen(Boolean seen) {
+		this.seen = seen;
+	}
+
+	public Long getSenderId() {
+		return senderId;
+	}
+
+	public void setSenderId(Long senderId) {
+		this.senderId = senderId;
+	}
+
+	public Long getReceiverId() {
+		return receiverId;
+	}
+
+	public void setReceiverId(Long receiverId) {
+		this.receiverId = receiverId;
 	}
 }

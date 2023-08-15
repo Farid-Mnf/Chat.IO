@@ -2,12 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<meta charset="UTF-8">
-<title>Chat</title>
+	<meta charset="UTF-8">
+	<title>Chat</title>
 	<link href="/css/bootstrap.min.css" rel="stylesheet">
 
-
-<link href="/style.css" rel="stylesheet">
+	<link href="/style.css" rel="stylesheet">
 
 </head>
 
@@ -53,11 +52,11 @@
 			<div class="scroll-box" id="chat-items">
 				<div th:each="message : ${messages}">
 					<!-- IF -->
-					<div th:if=${message.user.id==user.id}
+					<div th:if=${message.senderId==user.id}
 						class="alert alert-info disp-block left-margin"
 						th:text="${message.content}">User</div>
 					<!-- ELSE -->
-					<div th:unless=${message.user.id==user.id}
+					<div th:unless=${message.senderId==user.id}
 						class="alert alert-dark disp-block right-margin"
 						th:text="${message.content}">Contact</div>
 				</div>
@@ -71,7 +70,6 @@
 					type="button" id="button-addon2">Send</button>
 			</div>
 		</div>
-
 	</div>
 
 
@@ -81,6 +79,7 @@
 			// to javascript variables
 			var userId = /*[[${user.id}]]*/'User Id';
 			var convId = /*[[${convId}]]*/'Conversation id';
+			var receiverId = /*[[${receiverId}]]*/'receiver id';
 
 			// get message from input text field
 			var message = document.getElementById("input").value;
@@ -88,9 +87,10 @@
 			document.getElementById("input").value = "";
 			// create JSON object
 			var data = JSON.stringify({
-				"userId" : userId,
-				"convId" : convId,
-				"content" : message
+				"senderId" : userId,
+				"receiverId" : receiverId,
+				"conversationId" : convId,
+				"content": message
 			});
 
 			// open Asynchronous request
@@ -98,7 +98,7 @@
 
 			xhttp.onreadystatechange = function() {
 				// create new Div for new message and append to Chat-box
-				if (this.readyState == 4 && this.status == 200) {
+				if (this.readyState == 4 && this.status == 201) {
 					var chatBox = document.getElementById('chat-items');
 					var classList = 'alert alert-info disp-block left-margin';
 					var div = document.createElement('div');
@@ -117,6 +117,49 @@
 		}
 		var chatBox = document.getElementById('chat-items');
 		chatBox.scrollTop = chatBox.scrollHeight;
+		haveNewMessage();
+
+
+		function haveNewMessage(){
+
+			var userId = /*[[${user.id}]]*/'User Id';
+
+			var xhttp = new XMLHttpRequest();
+
+			xhttp.onreadystatechange = () => {
+				if (xhttp.readyState === 4) {
+					var data = xhttp.response;
+					var classListReceiver = 'alert alert-dark disp-block right-margin';
+					var classListSender = 'alert alert-info disp-block left-margin';
+					var chatBox = document.getElementById('chat-items');
+					chatBox.innerHTML = null;
+
+					for(var i = 0; i < data.length; i++){
+						var div = document.createElement('div');
+						div.innerText = data[i].content;
+						if(data[i].senderId == userId)
+							div.classList = classListSender;
+						else
+							div.classList = classListReceiver;
+						chatBox.appendChild(div);
+					}
+
+					chatBox.scrollTop = chatBox.scrollHeight;
+				}
+			};
+
+			var userId = /*[[${user.id}]]*/'User Id';
+			var convId = /*[[${convId}]]*/'Conversation id';
+			var receiverId = /*[[${receiverId}]]*/'Receiver id';
+			xhttp.open("GET", "/chatMessages/" + userId + "/" + receiverId + "/" + convId, true);
+			xhttp.responseType = 'json';
+			xhttp.send();
+
+			setTimeout(function() {
+				haveNewMessage();
+			}, 1000)
+		}
+
 
 	</script>
 

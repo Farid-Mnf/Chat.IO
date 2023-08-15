@@ -20,9 +20,7 @@ public class User {
 
 	@OneToMany(mappedBy="sender")
 	Set<Conversation> conversations = new HashSet<>();
-	
-	@OneToMany(mappedBy="user")
-	Set<Message> messages = new HashSet<>();
+
 	
 	public User() {}
 	

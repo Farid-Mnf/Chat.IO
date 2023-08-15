@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +31,26 @@ public class ConversationController {
 	public String makeConversation(@PathVariable(value="senderId") long senderId,
 			@PathVariable(value="recieverId") long recieverId, Model model) {
 
-		// TODO: check if already made a conversation
-
 		// get the User object of the user who sent the connection request
 		User user = userService.getUser(senderId).get();
+
+		List<Conversation> convs = new ArrayList<>();
+
+		Iterable<Conversation> iterable = convService.getConversations();
+
+		iterable.forEach(convs::add);
+
+		for (Conversation tempConv:
+				convs) {
+			if(tempConv.getSender().getId() == senderId && tempConv.getReceiverId() == recieverId){
+				System.out.println("Found one conversation----------------");
+				return "redirect:/conversations/" + user.getId();
+			}else if(tempConv.getSender().getId() == recieverId && tempConv.getReceiverId() == senderId){
+				System.out.println("Found one conversation----------------");
+				return "redirect:/conversations/" + user.getId();
+			}
+		}
+
 
 		// create Conversation between 2 users
 		Conversation conv = new Conversation(user,recieverId);
@@ -53,10 +71,10 @@ public class ConversationController {
 			// check if user exists in either sender or receiver attribute/column
 			if(conv.getSender().getId()==userId) {
 				// if Sender then add to contacts list
-				User user = userService.getUser(conv.getRecieverId()).get();
+				User user = userService.getUser(conv.getReceiverId()).get();
 				Contact contact = new Contact(user.getName(), user.getId(), conv.getId());
 				contacts.add(contact);
-			}else if(conv.getRecieverId()==userId) {
+			}else if(conv.getReceiverId()==userId) {
 				// if Receiver then add to contacts list
 				User user = userService.getUser(conv.getSender().getId()).get();
 				Contact contact = new Contact(user.getName(), user.getId(), conv.getId());
