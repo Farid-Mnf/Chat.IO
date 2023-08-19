@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/chat-app-Spring-framework.iml" filepath="$PROJECT_DIR$/.idea/chat-app-Spring-framework.iml" />
-      <module fileurl="file://$PROJECT_DIR$/demo/demo.iml" filepath="$PROJECT_DIR$/demo/demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Chat.IO.iml" filepath="$PROJECT_DIR$/.idea/Chat.IO.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo/chat.io.iml" filepath="$PROJECT_DIR$/demo/chat.io.iml" />
     </modules>
   </component>
 </project>
