@@ -55,7 +55,16 @@
 	</div>
 
 	<script src="/js/bootstrap.bundle.min.js"></script>
-
+	<script>
+		document.getElementsByClassName('btn')[0].disabled = true;
+		var input = document.getElementById('contactName');
+		input.addEventListener("keyup", function (event) {
+			if(input.value === "")
+				document.getElementsByClassName('btn')[0].disabled = true;
+			else
+				document.getElementsByClassName('btn')[0].disabled = false;
+		})
+	</script>
 
 </body>
 

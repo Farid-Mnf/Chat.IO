@@ -92,6 +92,11 @@
 
 			// get message from input text field
 			var message = document.getElementById("input").value;
+			if(message.toString().trim() == ""){
+				console.log("empty");
+				return;
+			}
+
 			// clear previous input text when Send button is clicked
 			document.getElementById("input").value = "";
 			// create JSON object
@@ -114,6 +119,7 @@
 					div.innerText = message;
 					div.classList = classList;
 					chatBox.appendChild(div);
+					chatBox.scrollTop = chatBox.scrollHeight;
 				}
 			};
 

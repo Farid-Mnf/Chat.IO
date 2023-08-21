@@ -20,8 +20,7 @@
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item"><a class="nav-link border border-primary" href="#" th:text="${user.name}">User Name</a>
 						</li>
-						
-						
+
 						<li class="nav-item"><a class="nav-link" href="#" 
 							th:href="@{/search-contact/}+${user.id}">Find</a>
 						</li>
@@ -38,18 +37,24 @@
 			</div>
 		</nav>
 
-	
-		<div th:each="contact : ${contacts}" class="mb-2" style="width:500px;margin:0 auto">
-			<div class="alert alert-danger row ">
-				<h6 class="col-7 pt-2" th:text="${contact.name}">Contact Name</h6>
-				<a 	class="btn btn-outline-danger col"
-					href="#" 
-					th:href="@{/connect/}+${user.id}+@{/}+${contact.id}"
+		<div th:if=${searchResult=="empty"}
+			 class="alert alert-info disp-block left-margin"
+			 >no users found!</div>
+		<!-- ELSE -->
+		<div th:unless=${searchResult=="empty"}>
+			<div th:each="contact : ${contacts}" class="mb-2" style="width:500px;margin:0 auto">
+				<div class="alert alert-danger row ">
+					<h6 class="col-7 pt-2" th:text="${contact.name}">Contact Name</h6>
+					<a 	class="btn btn-outline-danger col"
+						  href="#"
+						  th:href="@{/connect/}+${user.id}+@{/}+${contact.id}"
 					>
-					Connect
-				</a>
+						Connect
+					</a>
+				</div>
 			</div>
 		</div>
+
 
 	</div>
 

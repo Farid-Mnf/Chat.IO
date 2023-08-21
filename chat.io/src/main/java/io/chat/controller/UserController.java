@@ -20,15 +20,22 @@ public class UserController {
 	
 	@RequestMapping("/findContact/{id}") // loop through all users and compare their name with input value
 	public String findContact(@PathVariable("id") long id, @RequestParam("contactName") String contactName, Model model) {
+
 		Iterable<User> users = userService.getAllContacts(id);
+
 		Set<User> contacts = new HashSet<>();
 		for(User user : users) {
 			if(user.getName().toLowerCase().contains(contactName.toLowerCase())) {
 				contacts.add(user);
 			}
 		}
-		// store contacts and user in model for HTML rendering
-		model.addAttribute("contacts", contacts);
+
+		int count = contacts.size();
+
+		if(count == 0)
+			model.addAttribute("searchResult", "empty");
+		else
+			model.addAttribute("contacts", contacts);
 		model.addAttribute("user", userService.getUser(id).get());
 		return "contact-result";
 	}
@@ -39,6 +46,4 @@ public class UserController {
 		model.addAttribute("user", user);
 		return "contact-finder";
 	}
-
-
 }
