@@ -1,5 +1,6 @@
 package io.chat.entity;
 
+
 public class Contact {
 
 	String name;

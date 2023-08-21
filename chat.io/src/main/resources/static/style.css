@@ -32,8 +32,7 @@ html, body{
 }
 .scroll-box{
 	overflow-y:scroll;
-	min-height:200px;
-	max-height:450px;
+	height: 38em;
 }
 .message-area{
 	position: absolute;
