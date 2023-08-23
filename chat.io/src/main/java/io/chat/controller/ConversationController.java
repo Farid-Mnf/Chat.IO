@@ -19,41 +19,45 @@ import io.chat.service.UserService;
 
 @Controller
 public class ConversationController {
-
-	@Autowired
 	ConversationService convService;
-
-	@Autowired
 	UserService userService;
 
+	@Autowired
+	public ConversationController(ConversationService convService, UserService userService) {
+		this.convService = convService;
+		this.userService = userService;
+	}
+
 	// connect two users with the id of the two user connected
-	@GetMapping("/connect/{senderId}/{recieverId}")
+	@GetMapping("/connect/{senderId}/{receiverId}")
 	public String makeConversation(@PathVariable(value="senderId") long senderId,
-			@PathVariable(value="recieverId") long recieverId, Model model) {
+								   @PathVariable(value= "receiverId") long receiverId) {
 
 		// get the User object of the user who sent the connection request
-		User user = userService.getUser(senderId).get();
+		User user = userService.getUser(senderId).isPresent()? userService.getUser(senderId).get() : null;
 
-		List<Conversation> convs = new ArrayList<>();
+		List<Conversation> conversations = new ArrayList<>();
 
 		Iterable<Conversation> iterable = convService.getConversations();
 
-		iterable.forEach(convs::add);
+		iterable.forEach(conversations::add);
 
 		for (Conversation tempConv:
-				convs) {
-			if(tempConv.getSender().getId() == senderId && tempConv.getReceiverId() == recieverId){
+				conversations) {
+			if(tempConv.getSender().getId() == senderId && tempConv.getReceiverId() == receiverId){
 				System.out.println("Found one conversation----------------");
+				assert user != null;
 				return "redirect:/conversations/" + user.getId();
-			}else if(tempConv.getSender().getId() == recieverId && tempConv.getReceiverId() == senderId){
+			}else if(tempConv.getSender().getId() == receiverId && tempConv.getReceiverId() == senderId){
 				System.out.println("Found one conversation----------------");
+				assert user != null;
 				return "redirect:/conversations/" + user.getId();
 			}
 		}
 
 
 		// create Conversation between 2 users
-		Conversation conv = new Conversation(user,recieverId);
+		Conversation conv = new Conversation(user,receiverId);
 
 		// finally save that Conversation
 		convService.save(conv);

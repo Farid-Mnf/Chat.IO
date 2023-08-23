@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<title>Chat</title>
 	<link href="/css/bootstrap.min.css" rel="stylesheet">
+	<script src="/js/stomp.umd.min.js"></script>
 
 	<link href="/style.css" rel="stylesheet">
 
@@ -75,109 +76,30 @@
 
 	<script th:inline="javascript">
 
+		const userId = /*[[${user.id}]]*/'User Id';
+		const convId = /*[[${convId}]]*/'Conversation id';
+		const receiverId = /*[[${receiverId}]]*/'receiver id';
 
 		const input = document.getElementById('input');
-		input.addEventListener("keyup", function (event) {
-			if(event.key ==="Enter"){
-				send();
-			}
+		input.addEventListener("keyup", function (event) { // send on Enter key pressed
+			if(event.key ==="Enter") send();
 		});
 
-		function send() {
-			// assign back-end user-id and conversation-id using Thymeleaf
-			// to javascript variables
-			var userId = /*[[${user.id}]]*/'User Id';
-			var convId = /*[[${convId}]]*/'Conversation id';
-			var receiverId = /*[[${receiverId}]]*/'receiver id';
+		function send() { // send input message
+			const message = document.getElementById("input").value;
+			if(message.toString().trim() == ""){ return; } // escape empty message
 
-			// get message from input text field
-			var message = document.getElementById("input").value;
-			if(message.toString().trim() == ""){
-				console.log("empty");
-				return;
-			}
+			document.getElementById("input").value = ""; // clear after message sent
 
-			// clear previous input text when Send button is clicked
-			document.getElementById("input").value = "";
-			// create JSON object
-			var data = JSON.stringify({
-				"senderId" : userId,
-				"receiverId" : receiverId,
-				"conversationId" : convId,
-				"content": message
-			});
-
-			// open Asynchronous request
-			var xhttp = new XMLHttpRequest();
-
-			xhttp.onreadystatechange = function() {
-				// create new Div for new message and append to Chat-box
-				if (this.readyState == 4 && this.status == 201) {
-					var chatBox = document.getElementById('chat-items');
-					var classList = 'alert alert-info disp-block left-margin';
-					var div = document.createElement('div');
-					div.innerText = message;
-					div.classList = classList;
-					chatBox.appendChild(div);
-					chatBox.scrollTop = chatBox.scrollHeight;
-				}
-			};
-
-			xhttp.open("POST", "/message", true);
-			xhttp.setRequestHeader("Content-Type",
-					"application/json;charset=UTF-8");
-			xhttp.send(data);
-
-		}
-		var chatBox = document.getElementById('chat-items');
-		chatBox.scrollTop = chatBox.scrollHeight;
-		haveNewMessage();
-
-
-		function haveNewMessage(){
-
-			var userId = /*[[${user.id}]]*/'User Id';
-
-			var xhttp = new XMLHttpRequest();
-
-			xhttp.onreadystatechange = () => {
-				if (xhttp.readyState === 4) {
-					var data = xhttp.response;
-					var classListReceiver = 'alert alert-dark disp-block right-margin';
-					var classListSender = 'alert alert-info disp-block left-margin';
-					var chatBox = document.getElementById('chat-items');
-					chatBox.innerHTML = null;
-
-					for(var i = 0; i < data.length; i++){
-						var div = document.createElement('div');
-						div.innerText = data[i].content;
-						if(data[i].senderId == userId)
-							div.classList = classListSender;
-						else
-							div.classList = classListReceiver;
-						chatBox.appendChild(div);
-					}
-
-					chatBox.scrollTop = chatBox.scrollHeight;
-				}
-			};
-
-			var userId = /*[[${user.id}]]*/'User Id';
-			var convId = /*[[${convId}]]*/'Conversation id';
-			var receiverId = /*[[${receiverId}]]*/'Receiver id';
-			xhttp.open("GET", "/chatMessages/" + userId + "/" + receiverId + "/" + convId, true);
-			xhttp.responseType = 'json';
-			xhttp.send();
-
-			setTimeout(function() {
-				haveNewMessage();
-			}, 1000)
+			sendMessage(userId, message);
 		}
 
-
+		// var chatBox = document.getElementById('chat-items');
+		// chatBox.scrollTop = chatBox.scrollHeight;
 	</script>
 
 	<script src="/js/bootstrap.bundle.min.js"></script>
+	<script src="/js/app.js"></script>
 
 </body>
 
