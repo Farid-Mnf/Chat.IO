@@ -73,11 +73,9 @@
 		</div>
 	</div>
 
-
 	<script th:inline="javascript">
-
+		// get response variables from Thymeleaf template
 		const userId = /*[[${user.id}]]*/'User Id';
-		const convId = /*[[${convId}]]*/'Conversation id';
 		const receiverId = /*[[${receiverId}]]*/'receiver id';
 
 		const input = document.getElementById('input');
@@ -93,9 +91,6 @@
 
 			sendMessage(userId, message);
 		}
-
-		// var chatBox = document.getElementById('chat-items');
-		// chatBox.scrollTop = chatBox.scrollHeight;
 	</script>
 
 	<script src="/js/bootstrap.bundle.min.js"></script>

@@ -2,22 +2,27 @@ const StompClient = new StompJs.Client({
     brokerURL : "ws://localhost:8080/chat-messages-stomp-registry"
 });
 
-console.log(receiverId);
-
-
 StompClient.activate();
 
 StompClient.onConnect = (frame) => {
     console.log('Connected: ' + frame);
     StompClient.subscribe('/topic/messages', (messageContent) => {
         const messageParsed = JSON.parse(messageContent.body);
-        //console.log("Message body: " + messageParsed);
-        //console.log("Sender Id: " + messageParsed.senderId + ", Receiver id: " + receiverId);
         if(messageParsed.senderId == receiverId){
-            console.log("Received: " + messageParsed.content);
+            displayIncomingMessage(messageParsed.content);
         }
     });
 };
+
+function displayIncomingMessage(message){
+    const chatBox = document.getElementById('chat-items');
+    const classList = 'alert alert-dark disp-block right-margin';
+    const div = document.createElement('div');
+    div.innerText = message;
+    div.classList = classList;
+    chatBox.appendChild(div);
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
 
 StompClient.onWebSocketError = (error) => {
     console.error('Error with websocket', error);
@@ -33,4 +38,15 @@ function sendMessage(senderId, content) {
         destination: "/chat/message",
         body: JSON.stringify({'content': content, senderId : senderId})
     });
+    displaySentMessage(content);
+}
+
+function displaySentMessage(message){
+    const chatBox = document.getElementById('chat-items');
+    const classList = 'alert alert-info disp-block left-margin';
+    const div = document.createElement('div');
+    div.innerText = message;
+    div.classList = classList;
+    chatBox.appendChild(div);
+    chatBox.scrollTop = chatBox.scrollHeight;
 }
