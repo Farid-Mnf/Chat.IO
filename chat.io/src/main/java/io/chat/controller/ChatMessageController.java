@@ -12,6 +12,6 @@ public class ChatMessageController {
     @SendTo("/topic/messages")
     public MessageContent handleMessage(MessageContent messageContent) throws InterruptedException {
         Thread.sleep(1000);
-        return new MessageContent(messageContent.getSenderId(), messageContent.getContent());
+        return new MessageContent(messageContent.getSenderId(), messageContent.getContent(), messageContent.getConversationId());
     }
 }

@@ -76,11 +76,12 @@
 	<script th:inline="javascript">
 		// get response variables from Thymeleaf template
 		const userId = /*[[${user.id}]]*/'User Id';
+		const convId = /*[[${convId}]]*/'Conversation id';
 		const receiverId = /*[[${receiverId}]]*/'receiver id';
 
 		const input = document.getElementById('input');
 		input.addEventListener("keyup", function (event) { // send on Enter key pressed
-			if(event.key ==="Enter") send();
+			if(event.key === "Enter") send();
 		});
 
 		function send() { // send input message
@@ -89,7 +90,7 @@
 
 			document.getElementById("input").value = ""; // clear after message sent
 
-			sendMessage(userId, message);
+			sendMessage(userId, message, convId);
 		}
 	</script>
 

@@ -18,10 +18,9 @@
 	}
 </style>
 </head>
-<body onload="clock()">
+<body>
 	<div class="container">
 		<div class="card" style="width: 18rem;margin:20px auto">	
-			<h1 class="badge bg-info" id="clock">Time</h1>
 			<img src="logo.png" class="card-img-top" alt="logo">
 			<div class="card-body">
 				<span class="label" >Chat.io</span><br>
@@ -36,27 +35,6 @@
 			</div>
 		</div>
 	</div>
-	
-	<script>
-		function clock(){
-			var clockElement = document.getElementById('clock');
-			var xhttp = new XMLHttpRequest();
-	
-			xhttp.onreadystatechange = function() {
-				// create new Div for new message and append to Chat-box
-				if (this.readyState == 4 && this.status == 200) {
-					clockElement.innerText = "Time: " + this.responseText;
-			    }
-			};
-			xhttp.open("GET", "/clock", true);
-			xhttp.send();
-			
-			setTimeout(function() {
-			    console.log('hello');
-			      clock();           
-			  }, 10000)
-		}
-	</script>
 
 	<script src="/js/bootstrap.bundle.min.js"></script>
 

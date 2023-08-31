@@ -8,7 +8,7 @@ StompClient.onConnect = (frame) => {
     console.log('Connected: ' + frame);
     StompClient.subscribe('/topic/messages', (messageContent) => {
         const messageParsed = JSON.parse(messageContent.body);
-        if(messageParsed.senderId == receiverId){
+        if(messageParsed.senderId === receiverId && messageParsed.conversationId === convId){
             displayIncomingMessage(messageParsed.content);
         }
     });
@@ -33,10 +33,10 @@ StompClient.onStompError = (frame) => {
     console.error('Additional details: ' + frame.body);
 };
 
-function sendMessage(senderId, content) {
+function sendMessage(senderId, content, conversationId) {
     StompClient.publish({
         destination: "/chat/message",
-        body: JSON.stringify({'content': content, senderId : senderId})
+        body: JSON.stringify({'content': content, senderId : senderId, conversationId : conversationId})
     });
     displaySentMessage(content);
 }

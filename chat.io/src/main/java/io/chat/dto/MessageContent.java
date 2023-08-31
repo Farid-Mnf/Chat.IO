@@ -3,10 +3,20 @@ package io.chat.dto;
 public class MessageContent {
     Long senderId;
     String content;
+    Long conversationId;
 
-    public MessageContent(Long senderId, String content) {
+    public MessageContent(Long senderId, String content, Long conversationId) {
         this.senderId = senderId;
         this.content = content;
+        this.conversationId = conversationId;
+    }
+
+    public Long getConversationId() {
+        return conversationId;
+    }
+
+    public void setConversationId(Long conversationId) {
+        this.conversationId = conversationId;
     }
 
     public Long getSenderId() {
