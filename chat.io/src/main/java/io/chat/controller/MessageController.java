@@ -56,13 +56,13 @@ public class MessageController {
 			 messages) {
 			MessageDTO messageDTO = new MessageDTO(message.getId(),
 					message.getSenderId(),
-					message.getReceiverId(),
 					message.getConversation().getId(),
 					message.getContent(),
 					message.getDate()
 			);
 
 			messageDTOS.add(messageDTO);
+
 		}
 		return messageDTOS;
 	}

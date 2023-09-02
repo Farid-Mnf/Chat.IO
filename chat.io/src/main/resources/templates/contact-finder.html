@@ -3,8 +3,11 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Find Contact</title>
+	<title>Chat.io</title>
 	<link href="/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/fontawesome-free-6.4.2-web/css/fontawesome.min.css">
+	<link href="/fontawesome-free-6.4.2-web/css/brands.css" rel="stylesheet">
+	<link href="/fontawesome-free-6.4.2-web/css/solid.css" rel="stylesheet">
 
 	<link href="/style.css" rel="stylesheet">
 </head>
@@ -14,55 +17,57 @@
 		<!-- Navigation -->
 		<nav class="navbar navbar-expand-lg static-top">
 			<div class="container">
-				<a class="navbar-brand" href="#"> <img
-					src="/logo.png" alt="logo" width=50 height=50>
-				</a>
-				<div class="collapse navbar-collapse" id="navbarResponsive">
+				<div class="" id="navbarResponsive">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link border border-primary" href="#" th:text="${user.name}">User Name</a>
-						</li>
-						
-						
-						<li class="nav-item"><a class="nav-link" href="#" 
-							th:href="@{/search-contact/}+${user.id}">Find</a>
-						</li>
-						<li class="nav-item"><a class="nav-link" href="#"
-							th:href="@{/conversations/}+${user.id}">Chats</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#" th:href="@{/}">
-							Logout
-							</a>
-						</li>
+						<a class="navbar-brand" href="#"> <img
+								src="/logo.png" alt="logo" width=50 height=50>
+						</a>
+						<a href="#">
+							<i class="fa-solid fa-user">
+							</i>
+							<li th:text="${user.name}">User Name</li>
+						</a>
+						<a th:href="@{/search-contact/}+${user.id}">
+							<i class="fa-solid fa-magnifying-glass"></i>
+							<li>Find</li>
+						</a>
+						<a th:href="@{/conversations/}+${user.id}">
+							<i class="fa-solid fa-comments"></i>
+							<li>Contacts</li>
+						</a>
+						<a th:href="@{/}">
+							<i class="fa-solid fa-right-from-bracket"></i>
+							<li>Logout</li>
+						</a>
 					</ul>
 				</div>
 			</div>
 		</nav>
 
-
-		
-		<h3 class="b-dark" style="text-align:center">Find new Contact</h3>
+		<h3 class="b-dark" style="text-align:center">
+			<li class="fa-solid fa-magnifying-glass"></li>
+			Find Contact
+		</h3>
 		
 		<form action="#" th:action="@{/findContact/}+${user.id}" method="POST">
 			<div class="mb-3">
-				<label for="contactName" class="form-label">Contact Name:</label>
 				<input type="text" name="contactName" class="form-control"
 					id="contactName">
 			</div>
-			<input type="submit" class="btn btn-primary" value="Find">
+			<input type="submit" value="Find" id="findButton">
 		</form>
 
 	</div>
 
 	<script src="/js/bootstrap.bundle.min.js"></script>
 	<script>
-		document.getElementsByClassName('btn')[0].disabled = true;
+		document.getElementById('findButton').disabled = true;
 		var input = document.getElementById('contactName');
 		input.addEventListener("keyup", function (event) {
-			if(input.value === "")
-				document.getElementsByClassName('btn')[0].disabled = true;
+			if(input.value.toString().trim() === "")
+				document.getElementById("findButton").disabled = true;
 			else
-				document.getElementsByClassName('btn')[0].disabled = false;
+				document.getElementById("findButton").disabled = false;
 		})
 	</script>
 

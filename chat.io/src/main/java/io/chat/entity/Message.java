@@ -12,10 +12,7 @@ public class Message {
 	String content;
 	Date date;
 	Boolean seen;
-
 	Long senderId;
-
-	Long receiverId;
 
 	@ManyToOne
 	@JoinColumn(name="conversation_id")
@@ -24,12 +21,11 @@ public class Message {
 	
 	public Message() {}
 
-	public Message(String content, Date date, boolean seen, Long senderId, Long receiverId) {
+	public Message(String content, Date date, boolean seen, Long senderId) {
 		this.content = content;
 		this.date = date;
 		this.seen = seen;
 		this.senderId = senderId;
-		this.receiverId = receiverId;
 	}
 	
 	
@@ -82,11 +78,4 @@ public class Message {
 		this.senderId = senderId;
 	}
 
-	public Long getReceiverId() {
-		return receiverId;
-	}
-
-	public void setReceiverId(Long receiverId) {
-		this.receiverId = receiverId;
-	}
 }

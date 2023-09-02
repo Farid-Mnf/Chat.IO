@@ -41,7 +41,6 @@ public class MessageRestController {
 		Message message = new Message();
 
 		message.setSenderId(messageDTO.getSenderId());
-		message.setReceiverId(messageDTO.getReceiverId());
 		message.setContent(messageDTO.getContent());
 		message.setDate(new Date());
 		message.setSeen(false);
@@ -62,7 +61,7 @@ public class MessageRestController {
 		for (Message message:
 			 messages) {
 			MessageDTO messageDTO = iMessageToDTO
-					.messageToDTO(message.getId(), message.getSenderId(), message.getReceiverId(), message.getConversation().getId(), message.getContent(), message.getDate());
+					.messageToDTO(message.getId(), message.getSenderId(), message.getConversation().getId(), message.getContent(), message.getDate());
 
 			dtoMessages.add(messageDTO);
 		}

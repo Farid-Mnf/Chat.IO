@@ -6,14 +6,13 @@ public class MessageDTO {
 
     Long id;
     Long senderId;
-    Long receiverId;
+
     Long conversationId;
     String content;
     Date date;
 
-    public MessageDTO(Long id, Long senderId, Long receiverId, Long conversationId, String content, Date date) {
+    public MessageDTO(Long id, Long senderId, Long conversationId, String content, Date date) {
         this.senderId = senderId;
-        this.receiverId = receiverId;
         this.conversationId = conversationId;
         this.content = content;
         this.date = date;
@@ -26,14 +25,6 @@ public class MessageDTO {
 
     public void setSenderId(Long senderId) {
         this.senderId = senderId;
-    }
-
-    public Long getReceiverId() {
-        return receiverId;
-    }
-
-    public void setReceiverId(Long receiverId) {
-        this.receiverId = receiverId;
     }
 
     public Long getConversationId() {

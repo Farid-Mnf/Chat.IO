@@ -1,11 +1,50 @@
 @charset "UTF-8";
 
 .container {
-	width: 500px
+	width: 35vw;
 }
 .logo{
 	margin-top:-10px;border:2px solid #ddd;border-radius:15%;float:right;
 	width:60px; height:60px;
+}
+
+ul a {
+	background-color: #40d3a9;;
+	padding: 1vw;
+	text-decoration: none;
+	color: inherit;
+}
+ul a:hover{
+	background-color: #37b28f;
+}
+
+ul .navbar-brand {
+	background: white;
+}
+
+ul .navbar-brand:hover {
+	background: white;
+}
+
+#navbarResponsive{
+	margin:auto;
+}
+ul a i, ul a li {
+	display: inline;
+}
+
+h3{
+	margin-top: 5vh;
+}
+
+#findButton{
+	margin: 0 auto;
+	display: block;
+	padding: 10px 30px;
+	background: #40d3a9;
+	border-radius: 10px;
+	border-style: none;
+
 }
 
 html, body{
