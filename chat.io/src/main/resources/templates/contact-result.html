@@ -5,7 +5,10 @@
 <meta charset="UTF-8">
 <title>Chat.io</title>
 	<link href="/css/bootstrap.min.css" rel="stylesheet">
-
+	<link href="/style.css" rel="stylesheet">
+	<link rel="stylesheet" href="/fontawesome-free-6.4.2-web/css/fontawesome.min.css">
+	<link href="/fontawesome-free-6.4.2-web/css/brands.css" rel="stylesheet">
+	<link href="/fontawesome-free-6.4.2-web/css/solid.css" rel="stylesheet">
 
 </head>
 <body>
@@ -13,37 +16,41 @@
 		<!-- Navigation -->
 		<nav class="navbar navbar-expand-lg static-top">
 			<div class="container">
-				<a class="navbar-brand" href="#"> <img
-					src="/logo.png" alt="logo" width=50 height=50>
-				</a>
-				<div class="collapse navbar-collapse" id="navbarResponsive">
+				<div class="" id="navbarResponsive">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link border border-primary" href="#" th:text="${user.name}">User Name</a>
-						</li>
-
-						<li class="nav-item"><a class="nav-link" href="#" 
-							th:href="@{/search-contact/}+${user.id}">Find</a>
-						</li>
-						<li class="nav-item"><a class="nav-link" href="#"
-							th:href="@{/conversations/}+${user.id}">Chats</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#" th:href="@{/}">
-							Logout
-							</a>
-						</li>
+						<a class="navbar-brand" href="#"> <img
+								src="/logo.png" alt="logo" width=50 height=50>
+						</a>
+						<a href="#">
+							<i class="fa-solid fa-user">
+							</i>
+							<li th:text="${user.name}">User Name</li>
+						</a>
+						<a th:href="@{/search-contact/}+${user.id}">
+							<i class="fa-solid fa-magnifying-glass"></i>
+							<li>Find</li>
+						</a>
+						<a th:href="@{/conversations/}+${user.id}">
+							<i class="fa-solid fa-comments"></i>
+							<li>Contacts</li>
+						</a>
+						<a th:href="@{/}">
+							<i class="fa-solid fa-right-from-bracket"></i>
+							<li>Logout</li>
+						</a>
 					</ul>
 				</div>
 			</div>
 		</nav>
 
+
 		<div th:if=${searchResult=="empty"}
-			 class="alert alert-info disp-block left-margin"
-			 >no users found!</div>
+			 class="alert custom-alert disp-block"
+			 >No users found!</div>
 		<!-- ELSE -->
-		<div th:unless=${searchResult=="empty"}>
+		<div th:unless=${searchResult=="empty"} id="contacts-result">
 			<div th:each="contact : ${contacts}" class="mb-2" style="width:500px;margin:0 auto">
-				<div class="alert alert-danger row ">
+				<div class="alert custom-alert row ">
 					<h6 class="col-7 pt-2" th:text="${contact.name}">Contact Name</h6>
 					<a 	class="btn btn-outline-danger col"
 						  href="#"
@@ -54,7 +61,6 @@
 				</div>
 			</div>
 		</div>
-
 
 	</div>
 

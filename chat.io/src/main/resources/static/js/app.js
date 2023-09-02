@@ -21,7 +21,7 @@ function displayIncomingMessage(message){
     div.innerText = message;
     div.classList = classList;
     chatBox.appendChild(div);
-    chatBox.scrollTop = chatBox.scrollHeight;
+    // chatBox.scrollTop = chatBox.scrollHeight;
 }
 
 StompClient.onWebSocketError = (error) => {

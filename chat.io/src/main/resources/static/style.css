@@ -1,5 +1,14 @@
 @charset "UTF-8";
-
+@font-face {
+	font-family: Roboto;
+	src:url("/fonts/Roboto-Regular.ttf");
+}
+* {
+	font-family: Roboto;
+}
+body{
+	background-color: #18191a;
+}
 .container {
 	width: 35vw;
 }
@@ -8,6 +17,28 @@
 	width:60px; height:60px;
 }
 
+.input-styled{
+	background: #3a3b3c;
+	border: none;
+	height: 5vh;
+	font-size: 1.5em;
+	color: white;
+}
+.input-styled:focus{
+	background-color: gray;
+	color: white;
+}
+
+.label-styled {
+	color: white;
+	font-size: 1.5em;
+}
+
+.card-styled{
+	width: 30vw;
+	margin: 9vh auto;
+	background: #242526;
+}
 ul a {
 	background-color: #40d3a9;;
 	padding: 1vw;
@@ -18,24 +49,18 @@ ul a:hover{
 	background-color: #37b28f;
 }
 
+ul a:first-child{
+	background-color: #18191a;
+}
+
 ul .navbar-brand {
-	background: white;
+	background: #18191a;
 }
 
-ul .navbar-brand:hover {
-	background: white;
-}
-
-#navbarResponsive{
-	margin:auto;
-}
 ul a i, ul a li {
 	display: inline;
 }
 
-h3{
-	margin-top: 5vh;
-}
 
 #findButton{
 	margin: 0 auto;
@@ -45,6 +70,17 @@ h3{
 	border-radius: 10px;
 	border-style: none;
 
+}
+
+#contacts-result{
+	background-color: #242526;
+	padding: 10% 0;
+	border-radius: 20px;
+
+}
+
+.custom-alert{
+	background-color: #b9f2e1;
 }
 
 html, body{
@@ -63,9 +99,7 @@ html, body{
 	overflow-wrap: break-word;
  		word-wrap: break-word;
 }
-.left-margin{
-	margin-left:50px
-}
+
 .right-margin{
 	margin-right:50px
 }
@@ -79,6 +113,27 @@ html, body{
     bottom: 10px;
     left: 5%;
 }
+
+ul a:nth-child(2) {
+	border-radius: 10px 0 0 10px;
+}
+ul a:nth-child(5) {
+	border-radius: 0 10px 10px 0;
+}
+
+.sign-up, .login{
+	background: #40d3a9;
+	color: white;
+	font-weight: bold;
+	border: none;
+}
+.sign-up:hover, .login:hover{
+	background: #2d8d72;
+}
+.join-phrase{
+	color: white;
+}
+
 .bord{
 	border-top:none;
 	border-bottom:none;

@@ -5,45 +5,111 @@
 <title>Chat.io</title>
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <link href="/style.css" rel="stylesheet">
+	<style>
+		body{
+			height: 85%;
+		}
+		.card-img-top {
+			width: 20vw;
+			height: 30vh;
+			margin: 0 auto;
+		}
 
-<style>
 
-	.container-styled{
-		width: 30vw;
-		margin: auto;
-	}
-
-</style>
+	</style>
 </head>
 <body>
-	<div class="container-styled">
-		<h3 class="alert alert-info mt-3" role="alert">
-			<a class="btn btn-outline-dark" href="/showLogin">Login</a>
-			<img alt="logo" src="/logo.png" class="logo">
-		</h3>
 
-		<form action="#" th:action="@{/new-user}" th:object="${user}"
-			method="post">
-			<div class="mb-3">
-				<label for="InputName" class="form-label">Name</label> <input
-					th:field="*{name}" type="text" class="form-control" id="InputName">
-			</div>
-			<div class="mb-3">
-				<label for="InputEmail1" class="form-label">Email</label> <input
-					th:field="*{email}" type="email" class="form-control"
-					id="InputEmail1">
-			</div>
-			<div class="mb-3">
-				<label for="InputPassword1" class="form-label">Password</label> <input
-					type="password" class="form-control" th:field="*{password}"
-					id="InputPassword1">
-			</div>
-			<input class="btn btn-primary" type="submit" value="Sign-Up">
-		</form>
+<div class="container">
+	<div class="card card-styled">
+		<img src="logo.png" class="card-img-top" alt="logo">
+		<div class="card-body">
+			<form action="#" th:action="@{/new-user}" th:object="${user}"
+				method="post">
+				<div class="mb-3">
+					<label for="InputName" class="form-label label-styled">Name</label> <input
+						th:field="*{name}" type="text" class="form-control input-styled" id="InputName">
+				</div>
+				<div class="mb-3">
+					<label for="InputEmail1" class="form-label label-styled">Email</label> <input
+						th:field="*{email}" type="email" class="form-control input-styled"
+						id="InputEmail1">
+				</div>
+				<div class="mb-3">
+					<label for="InputPassword1" class="form-label label-styled">Password</label>
+					<input
+						th:field="*{password}" type="password" class="form-control input-styled"
+						id="InputPassword1">
+				</div>
+				<div class="mb-3">
+					<label for="InputPassword2" class="form-label label-styled">Confirm Password</label>
+					<input
+						type="password" class="form-control input-styled"
+						id="InputPassword2">
+				</div>
+				<input class="btn sign-up" id="signUpButton" type="submit" value="Sign-Up">
+			</form>
+		</div>
 	</div>
+</div>
+
 
 	<script src="/js/bootstrap.bundle.min.js"></script>
 
+	<script>
+
+
+		const signUpButton = document.getElementById('signUpButton');
+		const passwordInput1 = document.getElementById('InputPassword1');
+		const passwordInput2 = document.getElementById('InputPassword2');
+		const nameInput = document.getElementById('InputName');
+		const emailInput = document.getElementById('InputEmail1');
+
+
+
+
+		passwordInput1.addEventListener('keyup', checkConfirmPassword);
+		passwordInput2.addEventListener('keyup', checkConfirmPassword);
+
+		passwordInput1.addEventListener('keyup', checkNotEmptyInputs);
+		passwordInput2.addEventListener('keyup', checkNotEmptyInputs);
+		nameInput.addEventListener('keyup', checkNotEmptyInputs);
+		emailInput.addEventListener('keyup', checkNotEmptyInputs);
+
+		checkNotEmptyInputs();
+		function checkNotEmptyInputs(){
+			if(nameInput.value.toString().trim() == "" ||
+					emailInput.value.toString().trim() == "" ||
+					passwordInput1.value.toString().trim() == "" ||
+					passwordInput2.value.toString().trim() == ""){
+				disableSignUpButton();
+			}else{
+				enableSignUpButton();
+				checkConfirmPassword();
+			}
+		}
+
+		function checkConfirmPassword(){
+			const input1text = passwordInput1.value;
+			const input2text = passwordInput2.value;
+
+			if(input1text != input2text || input1text.toString().trim() == "" || input2text.toString().trim() == ""){
+				disableSignUpButton();
+			}else{
+				enableSignUpButton();
+			}
+		}
+
+		function enableSignUpButton(){
+			signUpButton.disabled = false;
+			signUpButton.style = 'background: #40d3a9';
+		}
+
+		function disableSignUpButton(){
+			signUpButton.disabled = true;
+			signUpButton.style = 'background: #6bc9ae';
+		}
+	</script>
 
 </body>
 </html>

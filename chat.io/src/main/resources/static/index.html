@@ -5,8 +5,12 @@
 <title>Chat.io</title>
 
 <link href="/css/bootstrap.min.css" rel="stylesheet">
+<link href="/style.css" rel="stylesheet">
 
 <style>
+	body{
+		height: 85%;
+	}
 	.label{
 		color: #40d3a9;
 		border-bottom: 1px solid #40d3a9;
@@ -16,10 +20,8 @@
 		width: 100px;
 		margin: 5px auto;
 	}
-	.card-styled{
-		width: 30vw;
-		margin: 12vh auto;
-	}
+
+
 </style>
 </head>
 <body>
@@ -28,12 +30,12 @@
 			<img src="logo.png" class="card-img-top" alt="logo">
 			<div class="card-body">
 				<span class="label" >Chat.io</span><br>
-			    <p class="card-text text-center">Join and Engage with your Friends</p>
+			    <p class="card-text text-center join-phrase">Join and Engage with your Friends</p>
 				<div class="row">
 				<span class="col"></span>
-					<a class="btn btn-outline-dark col-4" href="/sign-up">Sign-Up</a>
+					<a class="btn btn-outline-dark col-4 sign-up" href="/sign-up">Sign-Up</a>
 					<span class="col"></span>
-					<a class="btn btn-outline-dark col-4" href="/showLogin">Login</a>
+					<a class="btn btn-outline-dark col-4 login" href="/showLogin">Login</a>
 				<span class="col"></span>
 				</div>
 			</div>
