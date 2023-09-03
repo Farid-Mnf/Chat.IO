@@ -19,4 +19,5 @@
 <li><b>JavaScript</b> for controlling page behaviour and functionality.</li>
 <li><b>Bootstrap</b> for some element components.</li>
 <li><b>SockJS</b> as my web socket client to subscribe to message topics.</li>
+<li><b>Font Awesome</b> for adding some icons.</li>
 </ul>
