@@ -15,14 +15,13 @@
 			margin: 0 auto;
 		}
 
-
 	</style>
 </head>
 <body>
 
 <div class="container">
 	<div class="card card-styled">
-		<img src="logo.png" class="card-img-top" alt="logo">
+		<img src="logo.webp" class="card-img-top" alt="logo">
 		<div class="card-body">
 			<form action="#" th:action="@{/new-user}" th:object="${user}"
 				method="post">
@@ -47,7 +46,8 @@
 						type="password" class="form-control input-styled"
 						id="InputPassword2">
 				</div>
-				<input class="btn sign-up" id="signUpButton" type="submit" value="Sign-Up">
+				<input class="btn sign-up" id="signUpButton" type="submit" disabled value="Sign-Up">
+				<a id="register-button" href="#" th:href="@{/showLogin}">Login instead?</a>
 			</form>
 		</div>
 	</div>
@@ -65,49 +65,40 @@
 		const nameInput = document.getElementById('InputName');
 		const emailInput = document.getElementById('InputEmail1');
 
+		[passwordInput1, passwordInput2, nameInput, emailInput].forEach(el => {
+			el.addEventListener('keyup', checkNotEmptyInputs);
+		})
 
-
-
-		passwordInput1.addEventListener('keyup', checkConfirmPassword);
-		passwordInput2.addEventListener('keyup', checkConfirmPassword);
-
-		passwordInput1.addEventListener('keyup', checkNotEmptyInputs);
-		passwordInput2.addEventListener('keyup', checkNotEmptyInputs);
-		nameInput.addEventListener('keyup', checkNotEmptyInputs);
-		emailInput.addEventListener('keyup', checkNotEmptyInputs);
-
-		checkNotEmptyInputs();
 		function checkNotEmptyInputs(){
-			if(nameInput.value.toString().trim() == "" ||
-					emailInput.value.toString().trim() == "" ||
-					passwordInput1.value.toString().trim() == "" ||
-					passwordInput2.value.toString().trim() == ""){
+			if(
+				nameInput.value.toString().trim() == "" ||
+				emailInput.value.toString().trim() == "" ||
+				!isPasswordConfirmed()
+			){
 				disableSignUpButton();
 			}else{
 				enableSignUpButton();
-				checkConfirmPassword();
 			}
 		}
 
-		function checkConfirmPassword(){
+
+		function isPasswordConfirmed(){
 			const input1text = passwordInput1.value;
 			const input2text = passwordInput2.value;
 
 			if(input1text != input2text || input1text.toString().trim() == "" || input2text.toString().trim() == ""){
-				disableSignUpButton();
-			}else{
-				enableSignUpButton();
+				return false;
 			}
+
+			return true;
 		}
 
 		function enableSignUpButton(){
 			signUpButton.disabled = false;
-			signUpButton.style = 'background: #40d3a9';
 		}
 
 		function disableSignUpButton(){
 			signUpButton.disabled = true;
-			signUpButton.style = 'background: #6bc9ae';
 		}
 	</script>
 

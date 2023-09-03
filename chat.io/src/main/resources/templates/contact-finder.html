@@ -44,19 +44,20 @@
 			</div>
 		</nav>
 
-		<h3 class="b-dark" style="text-align:center">
-			<li class="fa-solid fa-magnifying-glass"></li>
-			Find Contact
-		</h3>
-		
-		<form action="#" th:action="@{/findContact/}+${user.id}" method="POST">
-			<div class="mb-3">
-				<input type="text" name="contactName" class="form-control"
-					id="contactName">
-			</div>
-			<input type="submit" value="Find" id="findButton">
-		</form>
+		<div id="container-find">
+			<h3 class="b-dark" id="find-contact-header">
+				<li class="fa-solid fa-magnifying-glass"></li>
+				Find Contact
+			</h3>
 
+			<form action="#" th:action="@{/findContact/}+${user.id}" method="POST">
+				<div class="mb-3">
+					<input type="text" name="contactName" class="form-control input-styled"
+						id="contactName">
+				</div>
+				<input type="submit" value="Find" id="findButton">
+			</form>
+		</div>
 	</div>
 
 	<script src="/js/bootstrap.bundle.min.js"></script>

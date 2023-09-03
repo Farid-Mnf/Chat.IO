@@ -9,6 +9,9 @@
 body{
 	background-color: #18191a;
 }
+p{
+	color: #d7d7d7;
+}
 .container {
 	width: 35vw;
 }
@@ -20,7 +23,6 @@ body{
 .input-styled{
 	background: #3a3b3c;
 	border: none;
-	height: 5vh;
 	font-size: 1.5em;
 	color: white;
 }
@@ -30,14 +32,15 @@ body{
 }
 
 .label-styled {
-	color: white;
+	color: #d9d9d9;
 	font-size: 1.5em;
 }
 
 .card-styled{
 	width: 30vw;
-	margin: 9vh auto;
+	margin: 50px auto;
 	background: #242526;
+	padding: 25px;
 }
 ul a {
 	background-color: #40d3a9;;
@@ -66,10 +69,18 @@ ul a i, ul a li {
 	margin: 0 auto;
 	display: block;
 	padding: 10px 30px;
-	background: #40d3a9;
+	background: #27824c;
 	border-radius: 10px;
 	border-style: none;
 
+}
+#find-contact-header{
+	text-align:center;
+	color: white;
+}
+
+#container-find{
+	background-color: #242526;
 }
 
 #contacts-result{
@@ -77,6 +88,25 @@ ul a i, ul a li {
 	padding: 10% 0;
 	border-radius: 20px;
 
+}
+
+#add-contact-button{
+	border-color: black;
+	color: black;
+	background: #939393;
+}
+
+#add-contact-button:hover
+{
+	background-color: white;
+	color: black;
+	border-color: black;
+}
+
+#contact-alert-style{
+	background-color: #3b3d3e;
+	color: white;
+	font-size: 2em;
 }
 
 .custom-alert{
@@ -103,9 +133,12 @@ html, body{
 .right-margin{
 	margin-right:50px
 }
+
 .scroll-box{
 	overflow-y:scroll;
 	height: 38em;
+	display: flex;
+	flex-direction: column-reverse;
 }
 .message-area{
 	position: absolute;
@@ -122,16 +155,17 @@ ul a:nth-child(5) {
 }
 
 .sign-up, .login{
-	background: #40d3a9;
-	color: white;
-	font-weight: bold;
+	background: #27824c;
+	color: #ececec !important;
 	border: none;
+	min-width: 80px;
+}
+
+.sign-up:disabled {
+	background-color: #27824c !important;
 }
 .sign-up:hover, .login:hover{
-	background: #2d8d72;
-}
-.join-phrase{
-	color: white;
+	background: #206b3e;
 }
 
 .bord{
@@ -139,4 +173,48 @@ ul a:nth-child(5) {
 	border-bottom:none;
 	border-right:1px solid black;
 	border-left:1px solid black;
+}
+
+.chat-item-container {
+	display: flex;
+}
+
+.chat-item-container--mine {
+	justify-content: end;
+}
+#register-button, #login-button{
+	display: inline-block;
+	text-decoration: none;
+	margin-left: 10px;
+	color: #27824c;
+}
+.chat-item {
+	max-width: 250px;
+}
+
+.input-group-text{
+	background-color: inherit;
+	border: none;
+	color: #d9d9d9;
+	padding: 0;
+	margin-bottom: 20px;
+	margin-top: 10px;
+}
+
+.input-group-text input {
+	margin-right: 5px;
+}
+
+.input-group-text input{
+	background-color: gray;
+	border-color: gray;
+}
+
+.input-group-text input:checked{
+	background-color: #27824c;
+	border-color: #37c973;
+	border-color: #27824c;
+}
+.input-group-text label{
+	color: #8d8d8d;
 }

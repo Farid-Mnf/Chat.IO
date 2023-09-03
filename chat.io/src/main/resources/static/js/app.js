@@ -20,7 +20,7 @@ function displayIncomingMessage(message){
     const div = document.createElement('div');
     div.innerText = message;
     div.classList = classList;
-    chatBox.appendChild(div);
+    chatBox.prepend(div);
     // chatBox.scrollTop = chatBox.scrollHeight;
 }
 
@@ -47,6 +47,6 @@ function displaySentMessage(message){
     const div = document.createElement('div');
     div.innerText = message;
     div.classList = classList;
-    chatBox.appendChild(div);
+    chatBox.prepend(div);
     chatBox.scrollTop = chatBox.scrollHeight;
 }

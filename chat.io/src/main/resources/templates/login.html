@@ -7,41 +7,76 @@
 	<link href="/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/style.css" rel="stylesheet">
 
+	<style>
+		body{ height: 85%; }
+		.card-img-top {
+			width: 20vw;
+			height: 30vh;
+			margin: 0 auto;
+		}
+		.card{ margin-top: 100px; }
+	</style>
+
 </head>
 
 <body>
-	<div class="container mt-4	" style="width:500px">
-		<h3 class="alert alert-info" role="alert">
-			<a 	class="btn btn-outline-dark" 
-				href="#" 
-				th:href="@{/sign-up}"
-				>
-					Sign-Up
-			</a>
-			<img alt="logo" src="/logo.png" class="logo">
-			
-		</h3>
-		
-	
-		<form action="#" th:action="@{/login}" th:object="${user}"
-			method="post">
-			<div class="mb-3">
-				<label for="exampleInputEmail1" class="form-label">Email
-					address</label> 
-				<input type="email" th:field="*{email}" class="form-control"
-					id="exampleInputEmail1">
+	<div class="container mt-4" style="width:500px">
 
+
+		<div class="card card-styled">
+			<img src="logo.webp" class="card-img-top" alt="logo">
+			<div class="card-body">
+				<form action="#" th:action="@{/login}" th:object="${user}"
+					  method="post">
+					<div class="mb-3">
+						<label for="InputEmail1" class="form-label label-styled">Email</label> <input
+							th:field="*{email}" type="email" class="form-control input-styled"
+							id="InputEmail1">
+					</div>
+					<div>
+						<label for="InputPassword1" class="form-label label-styled">Password</label>
+						<input
+								th:field="*{password}" type="password" class="form-control input-styled"
+								id="InputPassword1">
+					</div>
+					<div class="input-group-text">
+						<input id="remember-check-box" class="form-check-input mt-0" type="checkbox" value="">
+						<label for="remember-check-box">Remember me?</label>
+					</div>
+					<input class="btn sign-up" id="signUpButton" type="submit" disabled value="Login">
+					<a id="register-button" href="#" th:href="@{/sign-up}">Register?</a>
+				</form>
 			</div>
-			<div class="mb-3">
-				<label for="exampleInputPassword1" class="form-label">Password</label>
-				<input type="password" th:field="*{password}" class="form-control"
-					id="exampleInputPassword1">
-			</div>
-			<input type="submit" class="btn btn-primary" value="Login">
-		</form>
+		</div>
 	</div>
-
 	<script src="/js/bootstrap.bundle.min.js"></script>
+
+	<script>
+
+
+		const passwordInput1 = document.getElementById('InputPassword1');
+		const emailInput = document.getElementById('InputEmail1');
+
+		[passwordInput1, emailInput].forEach(el => {
+			el.addEventListener('keyup', checkNotEmptyInputs);
+		})
+
+		function checkNotEmptyInputs(){
+			if(emailInput.value.toString().trim() === "" || passwordInput1.value.toString().trim() === ""){
+				disableSignUpButton();
+			}else{
+				enableSignUpButton();
+			}
+		}
+
+		function enableSignUpButton(){
+			signUpButton.disabled = false;
+		}
+
+		function disableSignUpButton(){
+			signUpButton.disabled = true;
+		}
+	</script>
 
 </body>
 

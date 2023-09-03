@@ -40,7 +40,7 @@ public class MessageController {
 		List<Message> messages = conv.getMessages();
 		List<MessageDTO> messageDTOS = convertMessagesToMessagesDTOs(messages);
 		// sort messages by date
-		messageDTOS.sort((o1, o2) -> o1.getDate().compareTo(o2.getDate()));
+		messageDTOS.sort((o1, o2) -> o2.getDate().compareTo(o1.getDate()));
 		// store user, contact, messages, convId in model to be used in chat.html
 		model.addAttribute("user", user);
 		model.addAttribute("receiverId", contactId);

@@ -51,14 +51,14 @@
 			<hr>
 
 			<div class="scroll-box" id="chat-items">
-				<div th:each="message : ${messages}">
+				<div th:each="message : ${messages}" th:class="'chat-item-container '+${message.senderId==user.id ? 'chat-item-container--mine' : 'chat-item-container--his'}">
 					<!-- IF -->
 					<div th:if=${message.senderId==user.id}
-						class="alert alert-info disp-block left-margin"
+						class="chat-item alert alert-info disp-block left-margin"
 						th:text="${message.content}">User</div>
 					<!-- ELSE -->
 					<div th:unless=${message.senderId==user.id}
-						class="alert alert-dark disp-block right-margin"
+						class="chat-item alert alert-dark disp-block right-margin"
 						th:text="${message.content}">Contact</div>
 				</div>
 			</div>

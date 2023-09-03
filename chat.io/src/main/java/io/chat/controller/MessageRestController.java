@@ -67,7 +67,7 @@ public class MessageRestController {
 		}
 
 		// TODO: sort these messages to display them according to current user
-		dtoMessages.sort((o1, o2) -> o1.getDate().compareTo(o2.getDate()));
+		dtoMessages.sort((o2, o1) -> o1.getDate().compareTo(o2.getDate()));
 
 		return dtoMessages;
 	}
