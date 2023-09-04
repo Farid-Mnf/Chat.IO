@@ -14,14 +14,18 @@ StompClient.onConnect = (frame) => {
     });
 };
 
-function displayIncomingMessage(message){
+function displayIncomingMessage(message) {
     const chatBox = document.getElementById('chat-items');
-    const classList = 'alert alert-dark disp-block right-margin';
-    const div = document.createElement('div');
-    div.innerText = message;
+    const classList = 'chat-item-container chat-item-container--his';
+
+    const div =       document.createElement('div');
+    const nestedDiv = document.createElement('div');
+
+    nestedDiv.innerText = message;
+    div.append(nestedDiv);
+
     div.classList = classList;
     chatBox.prepend(div);
-    // chatBox.scrollTop = chatBox.scrollHeight;
 }
 
 StompClient.onWebSocketError = (error) => {
@@ -43,10 +47,11 @@ function sendMessage(senderId, content, conversationId) {
 
 function displaySentMessage(message){
     const chatBox = document.getElementById('chat-items');
-    const classList = 'alert alert-info disp-block left-margin';
+    const classList = 'chat-item-container chat-item-container--mine';
     const div = document.createElement('div');
-    div.innerText = message;
+    const nestedDiv = document.createElement('div');
+    nestedDiv.innerText = message;
+    div.append(nestedDiv);
     div.classList = classList;
     chatBox.prepend(div);
-    chatBox.scrollTop = chatBox.scrollHeight;
 }

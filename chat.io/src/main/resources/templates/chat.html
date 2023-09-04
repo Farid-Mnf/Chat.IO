@@ -6,9 +6,10 @@
 	<title>Chat.io</title>
 	<link href="/css/bootstrap.min.css" rel="stylesheet">
 	<script src="/js/stomp.umd.min.js"></script>
-
+	<link rel="stylesheet" href="/fontawesome-free-6.4.2-web/css/fontawesome.min.css">
+	<link href="/fontawesome-free-6.4.2-web/css/brands.css" rel="stylesheet">
+	<link href="/fontawesome-free-6.4.2-web/css/solid.css" rel="stylesheet">
 	<link href="/style.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -17,48 +18,44 @@
 		<!-- Navigation -->
 		<nav class="navbar navbar-expand-lg static-top">
 			<div class="container">
-				<a class="navbar-brand" href="#"> <img
-					src="/logo.png" alt="logo" width=50 height=50>
-				</a>
-				<div class="collapse navbar-collapse" id="navbarResponsive">
+				<div class="" id="navbarResponsive">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link border border-primary" href="#" th:text="${user.name}">User Name</a>
-						</li>
-						
-						
-						<li class="nav-item"><a class="nav-link" href="#" 
-							th:href="@{/search-contact/}+${user.id}">Find</a>
-						</li>
-						<li class="nav-item"><a class="nav-link" href="#"
-							th:href="@{/conversations/}+${user.id}">Chats</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#" th:href="@{/}">
-							Logout
-							</a>
-						</li>
+						<a class="navbar-brand" href="#"> <img
+								src="/logo.png" alt="logo" width=50 height=50>
+						</a>
+						<a href="#">
+							<i class="fa-solid fa-user">
+							</i>
+							<li th:text="${user.name}">User Name</li>
+						</a>
+						<a th:href="@{/search-contact/}+${user.id}">
+							<i class="fa-solid fa-magnifying-glass"></i>
+							<li>Find</li>
+						</a>
+						<a th:href="@{/conversations/}+${user.id}">
+							<i class="fa-solid fa-comments"></i>
+							<li>Contacts</li>
+						</a>
+						<a th:href="@{/}">
+							<i class="fa-solid fa-right-from-bracket"></i>
+							<li>Logout</li>
+						</a>
 					</ul>
 				</div>
 			</div>
 		</nav>
 
-
-
-		<div class="alert alert-secondary" role="alert"
-			style="min-height: 90%">
-			<h2 class="badge bg-info" th:text=${contact.name}>Receiver name
-			</h2>
-			<hr>
-
+		<div id="chat-box-styled">
+			<h2 class="badge bg-info"><span th:text=${contact.name}>Contact Name</span><i class="fa-solid fa-circle"></i></h2>
 			<div class="scroll-box" id="chat-items">
 				<div th:each="message : ${messages}" th:class="'chat-item-container '+${message.senderId==user.id ? 'chat-item-container--mine' : 'chat-item-container--his'}">
 					<!-- IF -->
 					<div th:if=${message.senderId==user.id}
-						class="chat-item alert alert-info disp-block left-margin"
+
 						th:text="${message.content}">User</div>
 					<!-- ELSE -->
 					<div th:unless=${message.senderId==user.id}
-						class="chat-item alert alert-dark disp-block right-margin"
+
 						th:text="${message.content}">Contact</div>
 				</div>
 			</div>
@@ -67,8 +64,11 @@
 				<input id="input" type="text" class="form-control"
 					placeholder="Write a message!" aria-label="Write a message!"
 					aria-describedby="button-addon2">
-				<button onclick="send()" class="btn btn-outline-secondary"
-					type="button" id="button-addon2">Send</button>
+				<button onclick="send()"
+						class="btn btn-outline-secondary"
+						type="button" id="button-addon2">
+					<i class="fa-solid fa-paper-plane"></i>
+				</button>
 			</div>
 		</div>
 	</div>

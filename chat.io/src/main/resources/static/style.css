@@ -43,7 +43,7 @@ p{
 	padding: 25px;
 }
 ul a {
-	background-color: #40d3a9;;
+	background-color: #27824c;;
 	padding: 1vw;
 	text-decoration: none;
 	color: inherit;
@@ -136,16 +136,12 @@ html, body{
 
 .scroll-box{
 	overflow-y:scroll;
-	height: 38em;
+	height: 100%;
 	display: flex;
 	flex-direction: column-reverse;
+	padding-bottom: 20px;
 }
-.message-area{
-	position: absolute;
-    width: 90%;
-    bottom: 10px;
-    left: 5%;
-}
+
 
 ul a:nth-child(2) {
 	border-radius: 10px 0 0 10px;
@@ -182,6 +178,31 @@ ul a:nth-child(5) {
 .chat-item-container--mine {
 	justify-content: end;
 }
+
+.chat-item-container--mine div{
+	background-color: #4c8563;
+	margin: 10px 10px 0px 50px;
+	border-radius: 10px 0 10px 10px;
+	text-align: right;
+}
+
+
+
+
+.chat-item-container--mine div,.chat-item-container--his div{
+	margin-top: 10px;
+	color: #e8e8e8;
+	padding: 5px 10px;
+
+}
+
+.chat-item-container--his div{
+	background-color: #a2a2a2;
+	margin: 10px 50px 0px 10px;
+	border-radius: 0 10px 10px 10px;
+	text-align: left;
+}
+
 #register-button, #login-button{
 	display: inline-block;
 	text-decoration: none;
@@ -191,6 +212,33 @@ ul a:nth-child(5) {
 .chat-item {
 	max-width: 250px;
 }
+.bg-info{
+	border-radius: 0 0 10px 10px;
+	background-color: #27824c !important;
+	margin: 0 auto;
+	margin-bottom: 10px;
+	min-width: 100px;
+	display: block;
+	max-width: 200px;
+}
+.bg-info i{
+	font-size: 15px;
+	color: springgreen;
+	margin-left: 5px;
+	margin-top: 2px;
+}
+.input-group{
+	position: absolute;
+	bottom: -85px;
+}
+.btn-outline-secondary{
+	color: white;
+	background: #27824c;
+	border-radius: 0 0 10px 0;
+}
+.message-area input {
+	border-radius: 0 0 0 10px;
+}
 
 .input-group-text{
 	background-color: inherit;
@@ -199,6 +247,7 @@ ul a:nth-child(5) {
 	padding: 0;
 	margin-bottom: 20px;
 	margin-top: 10px;
+	position: relative;
 }
 
 .input-group-text input {
@@ -213,8 +262,44 @@ ul a:nth-child(5) {
 .input-group-text input:checked{
 	background-color: #27824c;
 	border-color: #37c973;
-	border-color: #27824c;
 }
+
 .input-group-text label{
 	color: #8d8d8d;
+}
+
+.message-area button{
+	width: 20%;
+}
+
+#chat-box-styled{
+	height: 700px;
+	background: #22272e;
+	position: relative;
+	margin-top: 20px;
+	border-radius: 10px 10px 0 0;
+}
+
+ul {
+	color: white;
+}
+
+ul a:hover{
+	background-color: #34af66;
+}
+
+#chat-items {
+	background-color: #363e49;
+}
+
+#chat-items::-webkit-scrollbar {
+	width: 5px;               /* width of the entire scrollbar */
+}
+
+#chat-items::-webkit-scrollbar-track {
+	background: black;        /* color of the tracking area */
+}
+
+#chat-items::-webkit-scrollbar-thumb {
+	background-color:  #27824c;    /* color of the scroll thumb */
 }
