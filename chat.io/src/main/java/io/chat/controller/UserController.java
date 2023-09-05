@@ -15,11 +15,16 @@ import io.chat.service.UserService;
 
 @Controller
 public class UserController {
-	@Autowired
 	UserService userService;
+	@Autowired
+	public UserController(UserService userService){
+		this.userService = userService;
+	}
 	
 	@RequestMapping("/findContact/{id}") // loop through all users and compare their name with input value
-	public String findContact(@PathVariable("id") long id, @RequestParam("contactName") String contactName, Model model) {
+	public String findContact(@PathVariable("id") long id,
+							  @RequestParam("contactName") String contactName,
+							  Model model) {
 
 		Iterable<User> users = userService.getAllContacts(id);
 

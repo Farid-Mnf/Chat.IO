@@ -5,6 +5,7 @@
 }
 * {
 	font-family: Roboto;
+	color: #d9d9d9;
 }
 body{
 	background-color: #18191a;
@@ -15,9 +16,71 @@ p{
 .container {
 	width: 35vw;
 }
+
+#search-area{
+	height: 50px;
+	background-color: #353738;
+	display: flex;
+	flex-direction: row;
+	border-radius: 10px 10px 0 0;
+	position: relative;
+}
+#search-area input:focus{
+	background-color: #3a3b3c;
+}
+#search-result{
+	overflow-y: scroll;
+	font-size: 20px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	background-color: #242526
+}
+#search-result .search-result-item{
+	width: 100%;
+	border-bottom: 1px solid #2e2f31;
+	padding: 20px;
+	color: white;
+	display: flex;
+	justify-content: space-between;
+}
+.search-result-item div button{
+	padding: 5px 10px;
+	background: #3a3b3c;
+	color: #d9d9d9;
+	border: none;
+	border-radius: 5px;
+}
+.search-result-item div span{
+	line-height: 2;
+}
+.search-result-item div img{
+	width: 40px;
+	height: 40px;
+}
+
+.search-result-item div button:hover{
+	background-color: #27824c;
+}
+
+#contact-input{
+	width: 100%;
+	padding: 10px 10px 10px 40px;
+	border-radius: 10px 10px 0 0;
+}
+
+#search-button{
+	position: absolute;
+	font-size: 20px;
+	top: 15px;
+	left: 15px;
+}
 .logo{
-	margin-top:-10px;border:2px solid #ddd;border-radius:15%;float:right;
-	width:60px; height:60px;
+	margin-top:-10px;
+	border:2px solid #ddd;
+	border-radius:15%;
+	float:right;
+	width:60px;
+	height:60px;
 }
 
 .input-styled{
@@ -57,7 +120,7 @@ ul a:first-child{
 }
 
 ul .navbar-brand {
-	background: #18191a;
+	background: inherit !important;
 }
 
 ul a i, ul a li {
@@ -79,15 +142,18 @@ ul a i, ul a li {
 	color: white;
 }
 
+
+
 #container-find{
+	margin-top: 150px;
 	background-color: #242526;
+	color: white;
+	border-radius: 10px;
 }
 
 #contacts-result{
 	background-color: #242526;
-	padding: 10% 0;
 	border-radius: 20px;
-
 }
 
 #add-contact-button{
@@ -116,12 +182,7 @@ ul a i, ul a li {
 html, body{
 	height:100%
 }
-.bg-info {
-	min-width: 70px;
-	height: 40px;
-	padding-top: 10px;
-	font-size: 20px
-}
+
 .disp-block{
 	display:block;
 	margin:10px;
@@ -214,12 +275,14 @@ ul a:nth-child(5) {
 }
 .bg-info{
 	border-radius: 0 0 10px 10px;
-	background-color: #27824c !important;
 	margin: 0 auto;
 	margin-bottom: 10px;
 	min-width: 100px;
 	display: block;
 	max-width: 200px;
+	padding-top: 10px;
+	font-size: 20px;
+	background-color: #134126 !important;
 }
 .bg-info i{
 	font-size: 15px;
@@ -278,6 +341,7 @@ ul a:nth-child(5) {
 	position: relative;
 	margin-top: 20px;
 	border-radius: 10px 10px 0 0;
+	background-color: #27824c !important;
 }
 
 ul {
@@ -301,5 +365,19 @@ ul a:hover{
 }
 
 #chat-items::-webkit-scrollbar-thumb {
+	background-color:  #27824c;    /* color of the scroll thumb */
+}
+
+
+#search-result::-webkit-scrollbar {
+	width: 5px;               /* width of the entire scrollbar */
+	height: 100px
+}
+
+#search-result::-webkit-scrollbar-track {
+	background-color: #242526;        /* color of the tracking area */
+}
+
+#search-result::-webkit-scrollbar-thumb {
 	background-color:  #27824c;    /* color of the scroll thumb */
 }
