@@ -50,7 +50,6 @@
 				<i id="search-button" class="fa-solid fa-magnifying-glass"></i>
 			</div>
 			<div id="search-result">
-
 			</div>
 		</div>
 	</div>
@@ -71,17 +70,15 @@
 			const userId = [[${user.id}]];
 
 			const data = JSON.stringify({"userId":userId, "contactName": input.toString().trim()});
-			console.log(data);
 			const xmlHttpRequest = new XMLHttpRequest();
 
 			xmlHttpRequest.onreadystatechange = function() {
 				if (this.readyState == 4 && this.status == 200) {
-					// TODO: disable Connect button
 					const response = JSON.parse(this.response);
 					if(response.length != 0){
 						document.getElementById('search-result').innerHTML = null;
 						response.forEach(usr => {
-							createContactItem(usr.name);
+							createContactItem(usr.name, usr.id);
 						})
 					}else{
 						document.getElementById('search-result').innerHTML = null;
@@ -94,12 +91,16 @@
 		}
 
 		// create single contact item
-		function createContactItem(contactName){
+		function createContactItem(contactName, contactId){
 			const searchResultItem = document.createElement('div');
 			searchResultItem.className = 'search-result-item';
 			const div1 = document.createElement('div');
 			const div2 = document.createElement('div');
 			const button = document.createElement('button');
+			button.value = contactId;
+			button.addEventListener('click', () => {
+				addContact(button.value, button);
+			});
 			const span = document.createElement('span');
 			const i = document.createElement('i');
 			i.className = 'fa-solid fa-user-plus';
@@ -114,6 +115,27 @@
 			searchResultItem.appendChild(div2);
 			document.getElementById('search-result').appendChild(searchResultItem);
 		}
+
+		function addContact(contactId, button){
+			const API_ENDPOINT = '/connect';
+			const userId = [[${user.id}]];
+
+			const data = JSON.stringify({"userId":userId, "contactId": contactId});
+			const xmlHttpRequest = new XMLHttpRequest();
+
+			xmlHttpRequest.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					button.disabled = true;
+					button.children[0].textContent = 'Connected ';
+					button.children[1].classList.replace('fa-user-plus', 'fa-check-double');
+
+				}
+			};
+			xmlHttpRequest.open("POST", API_ENDPOINT, true);
+			xmlHttpRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+			xmlHttpRequest.send(data);
+		}
+
 	</script>
 
 </body>

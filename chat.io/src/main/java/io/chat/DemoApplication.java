@@ -1,5 +1,6 @@
 package io.chat;
 
+import io.chat.utils.BootstrapDataOnStartup;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

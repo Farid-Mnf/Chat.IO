@@ -25,7 +25,6 @@ public class SearchContactsController {
         System.out.println("Id: " + contactInfo.getUserId());
         System.out.println("Name : " + contactInfo.getContactName());
 
-
         Iterable<User> users = userService.getAllContacts(contactInfo.getUserId());
 
         Set<UserDTO> contacts = new HashSet<>();
