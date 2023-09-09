@@ -22,32 +22,33 @@
 <div class="container">
 	<div class="card card-styled">
 		<img src="logo.webp" class="card-img-top" alt="logo">
+		<h3 class="apply-zefani text-center">CHAT.IO</h3>
 		<div class="card-body">
 			<form action="#" th:action="@{/new-user}" th:object="${user}"
 				method="post">
 				<div class="mb-3">
-					<label for="InputName" class="form-label label-styled">Name</label> <input
+					<label for="InputName" class="form-label label-styled apply-PaytoneOne">Name</label> <input
 						th:field="*{name}" type="text" class="form-control input-styled" id="InputName">
 				</div>
 				<div class="mb-3">
-					<label for="InputEmail1" class="form-label label-styled">Email</label> <input
+					<label for="InputEmail1" class="form-label label-styled apply-PaytoneOne">Email</label> <input
 						th:field="*{email}" type="email" class="form-control input-styled"
 						id="InputEmail1">
 				</div>
 				<div class="mb-3">
-					<label for="InputPassword1" class="form-label label-styled">Password</label>
+					<label for="InputPassword1" class="form-label label-styled apply-PaytoneOne">Password</label>
 					<input
 						th:field="*{password}" type="password" class="form-control input-styled"
 						id="InputPassword1">
 				</div>
 				<div class="mb-3">
-					<label for="InputPassword2" class="form-label label-styled">Confirm Password</label>
+					<label for="InputPassword2" class="form-label label-styled apply-PaytoneOne">Confirm Password</label>
 					<input
 						type="password" class="form-control input-styled"
 						id="InputPassword2">
 				</div>
-				<input class="btn sign-up" id="signUpButton" type="submit" disabled value="Sign-Up">
-				<a id="register-button" href="#" th:href="@{/showLogin}">Login instead?</a>
+				<input class="btn sign-up apply-PaytoneOne" id="signUpButton" type="submit" disabled value="Sign-Up">
+				<a id="register-button" class="apply-PaytoneOne" href="#" th:href="@{/showLogin}">Login instead?</a>
 			</form>
 		</div>
 	</div>

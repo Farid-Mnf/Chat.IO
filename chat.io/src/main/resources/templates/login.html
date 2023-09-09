@@ -23,16 +23,17 @@
 
 		<div class="card card-styled">
 			<img src="logo.webp" class="card-img-top" alt="logo">
+			<h3 class="apply-zefani text-center">CHAT.IO</h3>
 			<div class="card-body">
 				<form action="#" th:action="@{/login}" th:object="${user}"
 					  method="post">
 					<div class="mb-3">
-						<label for="InputEmail1" class="form-label label-styled">Email</label> <input
+						<label for="InputEmail1" class="form-label label-styled apply-PaytoneOne">Email</label> <input
 							th:field="*{email}" type="email" class="form-control input-styled"
 							id="InputEmail1">
 					</div>
 					<div>
-						<label for="InputPassword1" class="form-label label-styled">Password</label>
+						<label for="InputPassword1" class="form-label label-styled apply-PaytoneOne">Password</label>
 						<input
 								th:field="*{password}" type="password" class="form-control input-styled"
 								id="InputPassword1">
@@ -40,10 +41,10 @@
 					<div class="input-group-text">
 
 						<input id="remember-check-box" class="form-check-input mt-0" type="checkbox" value="">
-						<label for="remember-check-box">Remember me?</label>
+						<label for="remember-check-box" class="apply-PaytoneOne">Remember me?</label>
 					</div>
-					<input class="btn sign-up" id="signUpButton" type="submit" disabled value="Login">
-					<a id="register-button" href="#" th:href="@{/sign-up}">Register?</a>
+					<input class="btn sign-up apply-PaytoneOne" id="signUpButton" type="submit" disabled value="Login">
+					<a id="register-button" class="apply-PaytoneOne" href="#" th:href="@{/sign-up}">Register?</a>
 				</form>
 			</div>
 		</div>

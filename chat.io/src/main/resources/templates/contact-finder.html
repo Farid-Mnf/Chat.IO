@@ -15,33 +15,30 @@
 <body>
 	<div id="container-specific">
 		<!-- Navigation -->
-		<nav class="navbar navbar-expand-lg static-top">
-			<div>
-				<div class="" id="navbarResponsive">
-					<ul class="navbar-nav ml-auto">
-						<a class="navbar-brand" href="#"> <img
-								src="/logo.png" alt="logo" width=50 height=50>
-						</a>
-						<a href="#">
-							<i class="fa-solid fa-user">
-							</i>
-							<li th:text="${user.name}">User Name</li>
-						</a>
-						<a th:href="@{/search-contact/}+${user.id}">
-							<i class="fa-solid fa-magnifying-glass"></i>
-							<li>Find</li>
-						</a>
-						<a th:href="@{/conversations/}+${user.id}">
-							<i class="fa-solid fa-address-book"></i>
-							<li>Contacts</li>
-						</a>
-						<a th:href="@{/}">
-							<i class="fa-solid fa-right-from-bracket"></i>
-							<li>Logout</li>
-						</a>
-					</ul>
-				</div>
-			</div>
+		<nav class="my-nav">
+			<ul class="my-nav-ul">
+				<a class="my-navbar-brand" href="#">
+					<img src="/logo.png" alt="logo" width=50 height=50>
+					<span id="chat-io">CHAT.IO</span>
+				</a>
+				<a href="#">
+					<i class="fa-solid fa-user">
+					</i>
+					<li th:text="${user.name}">User Name</li>
+				</a>
+				<a th:href="@{/search-contact/}+${user.id}">
+					<i class="fa-solid fa-magnifying-glass"></i>
+					<li>Find</li>
+				</a>
+				<a th:href="@{/conversations/}+${user.id}">
+					<i class="fa-solid fa-message"></i>
+					<li>Contacts</li>
+				</a>
+				<a th:href="@{/}">
+					<i class="fa-solid fa-right-from-bracket"></i>
+					<li>Logout</li>
+				</a>
+			</ul>
 		</nav>
 
 		<div id="container-find">
@@ -52,7 +49,7 @@
 			<div id="search-result">
 			</div>
 			<h3 id="suggested-contacts">
-				Suggested Contacts
+				<i class="fa-regular fa-address-book"></i>Suggested Contacts
 			</h3>
 			<div id="suggested">
 				<!--		Suggested Contact Item		-->

@@ -3,8 +3,20 @@
 	font-family: Roboto;
 	src:url("/fonts/Roboto-Regular.ttf");
 }
+@font-face {
+	font-family: Quantico-Bold;
+	src:url("/fonts/Quantico-Bold.ttf");
+}
+@font-face {
+	font-family: Zefani;
+	src:url("/fonts/Zefani.otf");
+}
+@font-face {
+	font-family: PaytoneOne;
+	src:url("/fonts/PaytoneOne.ttf");
+}
 * {
-	font-family: Roboto;
+	font-family: Roboto, monospace;
 	color: #d9d9d9;
 }
 body{
@@ -14,13 +26,23 @@ p{
 	color: #d7d7d7;
 }
 
+.apply-PaytoneOne{
+	font-family: PaytoneOne, monospace;
+	color: #d9d9d9;
+}
+
+.apply-zefani{
+	font-family: Zefani, monospace;
+	color: #d9d9d9;
+}
+
 .container{
 	width: 35vw;
 }
 
 
 #container-specific{
-	max-width: 600px;
+	max-width: 650px;
 	margin: 0 auto;
 }
 
@@ -76,6 +98,11 @@ p{
 	color: #d9d9d9;
 	text-align: center;
 	margin: 20px 0;
+	font-family: PaytoneOne, monospace;
+}
+
+#suggested-contacts i{
+	margin-right: 20px;
 }
 
 #contact-input{
@@ -90,14 +117,7 @@ p{
 	top: 15px;
 	left: 15px;
 }
-.logo{
-	margin-top:-10px;
-	border:2px solid #ddd;
-	border-radius:15%;
-	float:right;
-	width:60px;
-	height:60px;
-}
+
 
 .input-styled{
 	background: #28312e !important;
@@ -125,15 +145,39 @@ p{
 
 ul a {
 	background-color: #27824c;
-	padding: 20px;
 	text-decoration: none;
 	color: inherit;
 }
-
-ul .navbar-brand {
+.my-nav .my-nav-ul{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-top: -10px;
+}
+.my-nav .my-nav-ul a{
+	padding: 10px 15px;
+}
+ul .my-navbar-brand {
 	background: inherit !important;
+	padding: 0 !important;
+	margin-top:10px
 }
 
+#chat-io {
+	font-family: Zefani, monospace;
+	color: #d9d9d9;
+	font-size: 23px;
+}
+
+
+ul a:nth-child(2) {
+	border-radius: 0 0 0 10px;
+	margin-left: 20px;
+}
+ul a:nth-child(5) {
+	border-radius: 0 0 10px 0;
+}
 ul a i, ul a li {
 	display: inline;
 }
@@ -283,14 +327,6 @@ html, body{
 	padding-bottom: 20px;
 }
 
-
-ul a:nth-child(2) {
-	border-radius: 10px 0 0 10px;
-}
-ul a:nth-child(5) {
-	border-radius: 0 10px 10px 0;
-}
-
 .sign-up, .login{
 	background: #27824c;
 	color: #ececec !important;
@@ -438,10 +474,13 @@ ul a:hover{
 
 .your-contacts{
 	text-align: center;
-	margin: 20px 0;
-	background-color: #28312E;
-	padding: 10px;
-	border-radius: 10px;
+	color: #d9d9d9;
+	margin-top: 40px;
+	font-family: PaytoneOne, monospace;
+}
+
+.your-contacts i {
+	margin-right: 20px;
 }
 
 .your-contact-items{
@@ -455,14 +494,37 @@ ul a:hover{
 	background-color: #28312E;
 	margin: 20px 10px;
 	border-radius: 10px;
-
+	box-shadow: 2px 2px 9px 5px black;
 }
 
 .your-contact-item a{
 	text-decoration: none;
+	position: relative;
 }
+
+.your-contact-item a i{
+	left: 41%;
+	position: absolute;
+	top: 1%;
+	font-size: 40px;
+	visibility: hidden;
+}
+
+
 .your-contact-item:hover{
+	background-color: #0f5132;
+	box-shadow: none;
+}
+
+.your-contact-item:hover img{
+	background: #0f5132;
+	transition-duration: .5s;
 	opacity: .5;
+}
+
+.your-contact-item:hover a i{
+	visibility: visible;
+	opacity: 1;
 }
 
 
@@ -474,8 +536,7 @@ ul a:hover{
 }
 
 .your-contact-item .conv-button:hover{
-	background: #27824c;
-	transition-duration: .5s;
+	background: #0f5132;
 }
 
 .your-contact-item img
