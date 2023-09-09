@@ -25,13 +25,12 @@ public class SearchContactsController {
         System.out.println("Id: " + contactInfo.getUserId());
         System.out.println("Name : " + contactInfo.getContactName());
 
-        Iterable<User> users = userService.getAllContacts(contactInfo.getUserId());
+        Iterable<UserDTO> users = userService.getAllContacts(contactInfo.getUserId());
 
         Set<UserDTO> contacts = new HashSet<>();
-        for(User user : users) {
+        for(UserDTO user : users) {
             if(user.getName().toLowerCase().contains(contactInfo.getContactName().toLowerCase())) {
-                UserDTO userDTO = new UserDTO(user.getId(), user.getEmail(), user.getName());
-                contacts.add(userDTO);
+                contacts.add(user);
             }
         }
 

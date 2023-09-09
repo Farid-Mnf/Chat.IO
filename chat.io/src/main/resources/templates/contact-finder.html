@@ -13,10 +13,10 @@
 </head>
 
 <body>
-	<div class="container">
+	<div id="container-specific">
 		<!-- Navigation -->
 		<nav class="navbar navbar-expand-lg static-top">
-			<div class="container">
+			<div>
 				<div class="" id="navbarResponsive">
 					<ul class="navbar-nav ml-auto">
 						<a class="navbar-brand" href="#"> <img
@@ -32,7 +32,7 @@
 							<li>Find</li>
 						</a>
 						<a th:href="@{/conversations/}+${user.id}">
-							<i class="fa-solid fa-comments"></i>
+							<i class="fa-solid fa-address-book"></i>
 							<li>Contacts</li>
 						</a>
 						<a th:href="@{/}">
@@ -51,12 +51,35 @@
 			</div>
 			<div id="search-result">
 			</div>
+			<h3 id="suggested-contacts">
+				Suggested Contacts
+			</h3>
+			<div id="suggested">
+				<!--		Suggested Contact Item		-->
+				<div class="suggested-contact-item" th:each="contact : ${contacts}">
+					<div>
+						<img src="/images/women.jpg">
+					</div>
+
+					<div>
+						<span class="user-name" th:text="${contact.name}">Fanana Gamda</span>
+						<div>
+							<button class="connect-suggested-contact" th:value="${contact.id}">
+								<span>Connect </span>
+								<i class="fa-solid fa-user-plus"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+				<!--------------------------------------->
+			</div>
 		</div>
 	</div>
 
 
 	<script src="/js/bootstrap.bundle.min.js"></script>
 	<script>
+
 		const inputField = document.getElementById('contact-input');
 		inputField.addEventListener('keyup', listUsersResult);
 
@@ -116,6 +139,18 @@
 			document.getElementById('search-result').appendChild(searchResultItem);
 		}
 
+		document.querySelectorAll('.connect-suggested-contact').forEach(el => {
+			el.addEventListener('click', evt => {
+				const contactId = evt.target.value || evt.target.parentElement.value;
+				addContact(contactId, null);
+				const child = document.createElement('i');
+				child.className = 'fa-solid fa-user-plus';
+				console.log(el.children[1]);
+				el.children[1].classList.replace('fa-user-plus', 'fa-check-double');
+				el.children[0].textContent = 'Connected';
+			})
+		})
+
 		function addContact(contactId, button){
 			const API_ENDPOINT = '/connect';
 			const userId = [[${user.id}]];
@@ -124,6 +159,9 @@
 			const xmlHttpRequest = new XMLHttpRequest();
 
 			xmlHttpRequest.onreadystatechange = function() {
+				if(button == null){
+					return;
+				}
 				if (this.readyState == 4 && this.status == 200) {
 					button.disabled = true;
 					button.children[0].textContent = 'Connected ';

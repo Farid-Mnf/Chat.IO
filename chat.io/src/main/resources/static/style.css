@@ -8,13 +8,20 @@
 	color: #d9d9d9;
 }
 body{
-	background-color: #18191a;
+	background-color: #111413;
 }
 p{
 	color: #d7d7d7;
 }
-.container {
+
+.container{
 	width: 35vw;
+}
+
+
+#container-specific{
+	max-width: 600px;
+	margin: 0 auto;
 }
 
 #search-area{
@@ -22,18 +29,18 @@ p{
 	background-color: #353738;
 	display: flex;
 	flex-direction: row;
-	border-radius: 10px 10px 0 0;
 	position: relative;
+	border-radius: 10px;
 }
-#search-area input:focus{
-	background-color: #3a3b3c;
-}
+
 #search-result{
+	z-index: 2;
+	position: relative;
 	overflow-y: scroll;
 	font-size: 20px;
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
-	background-color: #242526
+	background-color: #28312e;
 }
 #search-result .search-result-item{
 	width: 100%;
@@ -60,12 +67,21 @@ p{
 
 .search-result-item div button:hover{
 	background-color: #27824c;
+	transition-duration: .5s;
+}
+
+#suggested-contacts{
+	position: absolute;
+	width: 100%;
+	color: #d9d9d9;
+	text-align: center;
+	margin: 20px 0;
 }
 
 #contact-input{
 	width: 100%;
-	padding: 10px 10px 10px 40px;
-	border-radius: 10px 10px 0 0;
+	padding: 10px 10px 10px 50px;
+	border-radius: 10px;
 }
 
 #search-button{
@@ -84,14 +100,15 @@ p{
 }
 
 .input-styled{
-	background: #3a3b3c;
+	background: #28312e !important;
 	border: none;
 	font-size: 1.5em;
 	color: white;
 }
 .input-styled:focus{
-	background-color: gray;
 	color: white;
+	outline: none;
+
 }
 
 .label-styled {
@@ -105,18 +122,12 @@ p{
 	background: #242526;
 	padding: 25px;
 }
+
 ul a {
-	background-color: #27824c;;
-	padding: 1vw;
+	background-color: #27824c;
+	padding: 20px;
 	text-decoration: none;
 	color: inherit;
-}
-ul a:hover{
-	background-color: #37b28f;
-}
-
-ul a:first-child{
-	background-color: #18191a;
 }
 
 ul .navbar-brand {
@@ -142,13 +153,82 @@ ul a i, ul a li {
 	color: white;
 }
 
-
-
 #container-find{
-	margin-top: 150px;
+	margin-top: 30px;
 	background-color: #242526;
 	color: white;
 	border-radius: 10px;
+	position: relative;
+}
+
+#suggested{
+	position: absolute;
+	z-index: 1;
+	top: 60px;
+	width: 100%;
+	height: 641px;
+	display: flex;
+	flex-direction: column;
+	margin-top: 65px;
+	border-radius: 10px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+#suggested .suggested-contact-item{
+	width: 90%;
+	background: #28312e;
+	margin: 15px auto;
+	border-radius: 10px;
+	box-shadow: 11px 13px 14px -7px #000;
+	border: 1px solid #18191a;
+}
+#suggested .suggested-contact-item:hover{
+	box-shadow: none;
+	transition-duration: .5s;
+}
+
+.suggested-contact-item{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.suggested-contact-item div:last-child{
+	padding-right: 15px;
+	text-align: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.suggested-contact-item div div button{
+	margin-left: 10px;
+}
+
+.suggested-contact-item .user-name{
+	font-size: 25px;
+
+}
+
+.suggested-contact-item div img{
+	border-radius: 10px 0 0 10px;
+	width: 100px;
+	height: 100px;
+}
+
+.suggested-contact-item div div button{
+	padding: 5px 10px;
+	background: #3a3b3c;
+	border: none;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+.suggested-contact-item div div button:hover{
+	background-color: #27824c;
+	transition-duration: .5s;
 }
 
 #contacts-result{
@@ -337,7 +417,6 @@ ul a:nth-child(5) {
 
 #chat-box-styled{
 	height: 700px;
-	background: #22272e;
 	position: relative;
 	margin-top: 20px;
 	border-radius: 10px 10px 0 0;
@@ -350,10 +429,60 @@ ul {
 
 ul a:hover{
 	background-color: #34af66;
+	transition-duration: .5s;
 }
 
 #chat-items {
 	background-color: #363e49;
+}
+
+.your-contacts{
+	text-align: center;
+	margin: 20px 0;
+	background-color: #28312E;
+	padding: 10px;
+	border-radius: 10px;
+}
+
+.your-contact-items{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.your-contact-item{
+	background-color: #28312E;
+	margin: 20px 10px;
+	border-radius: 10px;
+
+}
+
+.your-contact-item a{
+	text-decoration: none;
+}
+.your-contact-item:hover{
+	opacity: .5;
+}
+
+
+.your-contact-item .conv-button{
+	color: #d9d9d9;
+	border-radius: 0 0 10px 10px;
+	padding: 10px;
+	border: none;
+}
+
+.your-contact-item .conv-button:hover{
+	background: #27824c;
+	transition-duration: .5s;
+}
+
+.your-contact-item img
+{
+	width: 190px;
+	height: 190px;
+	border-radius: 10px 10px 0 0;
 }
 
 #chat-items::-webkit-scrollbar {
@@ -371,7 +500,6 @@ ul a:hover{
 
 #search-result::-webkit-scrollbar {
 	width: 5px;               /* width of the entire scrollbar */
-	height: 100px
 }
 
 #search-result::-webkit-scrollbar-track {
@@ -379,5 +507,19 @@ ul a:hover{
 }
 
 #search-result::-webkit-scrollbar-thumb {
+	background-color:  #27824c;    /* color of the scroll thumb */
+}
+
+
+#suggested::-webkit-scrollbar {
+	width: 5px;               /* width of the entire scrollbar */
+
+}
+
+#suggested::-webkit-scrollbar-track {
+	background-color: #242526;        /* color of the tracking area */
+}
+
+#suggested::-webkit-scrollbar-thumb {
 	background-color:  #27824c;    /* color of the scroll thumb */
 }

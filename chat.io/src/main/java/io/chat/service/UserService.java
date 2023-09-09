@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+import io.chat.dto.UserDTO;
 import io.chat.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,16 +13,19 @@ import io.chat.entity.User;
 
 @Service
 public class UserService {
-	
-	@Autowired
     UserRepo userRepo;
+	@Autowired
+	public UserService(UserRepo userRepo){
+		this.userRepo = userRepo;
+	}
 	
-	public Set<User> getAllContacts(long userId){
+	public Set<UserDTO> getAllContacts(long userId){
 		Iterable<User> users = userRepo.findAll();
-		Set<User> contacts = new HashSet<>();
+		Set<UserDTO> contacts = new HashSet<>();
 		for(User user : users) {
 			if(user.getId()!=userId) {
-				contacts.add(user);
+				UserDTO userDTO = new UserDTO(user.getId(), user.getEmail(), user.getName());
+				contacts.add(userDTO);
 			}
 		}
 		return contacts;

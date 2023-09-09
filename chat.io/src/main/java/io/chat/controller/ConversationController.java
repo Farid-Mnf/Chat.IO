@@ -85,7 +85,6 @@ public class ConversationController {
 				contacts.add(contact);
 			}
 		}
-		
 
 		User user = userService.getUser(userId).get();
 		model.addAttribute("user", user);

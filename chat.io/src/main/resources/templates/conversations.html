@@ -10,16 +10,6 @@
 	<link href="/fontawesome-free-6.4.2-web/css/solid.css" rel="stylesheet">
 
 	<link href="/style.css" rel="stylesheet">
-<style>
-.centered{
-	width:500px;
-	margin:0 auto;
-}
-.your-contacts {
-	text-align: center;
-}
-
-</style>
 </head>
 
 <body>
@@ -42,7 +32,8 @@
 							<li>Find</li>
 						</a>
 						<a th:href="@{/conversations/}+${user.id}">
-							<i class="fa-solid fa-comments"></i>
+<!--							<i class="fa-solid fa-comments"></i>-->
+							<i class="fa-solid fa-address-book"></i>
 							<li>Contacts</li>
 						</a>
 						<a th:href="@{/}">
@@ -55,14 +46,18 @@
 		</nav>
 
 
-		<h4 class="alert alert-info mt-4 fs-5 text-dark centered mb-1 your-contacts">Your Contacts</h4>
-		<div class="centered" th:each="contact : ${contacts}">
-			<div>
-				<a class="btn btn-outline-info d-grid gap-2 text-dark mb-1"
-					th:text="${contact.name}"
-					href="#"
-					th:href="@{/messages/}+${user.id}+@{/}+${contact.id}+@{/}+${contact.convId}">
-					User name
+		<h4 class="your-contacts">Your Contacts</h4>
+		<div class="your-contact-items">
+			<div class="your-contact-item" th:each="contact : ${contacts}">
+				<a th:href="@{/messages/}+${user.id}+@{/}+${contact.id}+@{/}+${contact.convId}">
+					<img src="/images/women.jpg">
+					<div class="btn btn-outline-info d-grid conv-button"
+						th:text="${contact.name}"
+						href="#"
+						th:href="@{/messages/}+${user.id}+@{/}+${contact.id}+@{/}+${contact.convId}">
+						User name
+						<i class="fa-solid fa-comment"></i>
+					</div>
 				</a>
 			</div>
 		</div>

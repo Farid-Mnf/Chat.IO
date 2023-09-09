@@ -3,6 +3,7 @@ package io.chat.controller;
 import java.util.HashSet;
 import java.util.Set;
 
+import io.chat.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,10 +27,10 @@ public class UserController {
 							  @RequestParam("contactName") String contactName,
 							  Model model) {
 
-		Iterable<User> users = userService.getAllContacts(id);
+		Iterable<UserDTO> users = userService.getAllContacts(id);
 
-		Set<User> contacts = new HashSet<>();
-		for(User user : users) {
+		Set<UserDTO> contacts = new HashSet<>();
+		for(UserDTO user : users) {
 			if(user.getName().toLowerCase().contains(contactName.toLowerCase())) {
 				contacts.add(user);
 			}
@@ -48,7 +49,10 @@ public class UserController {
 	@RequestMapping("/search-contact/{id}")
 	public String searchContact(@PathVariable("id") long id, Model model) {
 		User user = userService.getUser(id).get();
+		Set<UserDTO> contacts = userService.getAllContacts(id);
 		model.addAttribute("user", user);
+		model.addAttribute("contacts", contacts);
+		System.out.println();
 		return "contact-finder";
 	}
 }

@@ -1,5 +1,6 @@
 package io.chat.controller;
 
+import io.chat.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,11 +11,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import io.chat.entity.User;
 import io.chat.service.UserService;
 
+import java.util.Set;
+
 @Controller
 public class LoginController {
-
-	@Autowired
 	UserService userService;
+	@Autowired
+	public LoginController(UserService userService){
+		this.userService = userService;
+	}
 
 	@GetMapping("/showLogin")
 	public String showLogin(Model model) {
@@ -31,9 +36,11 @@ public class LoginController {
 		for (User tempUser : users) {
 			if (tempUser.getEmail().equals(user.getEmail())) {
 				if (tempUser.getPassword().equals(user.getPassword())) {
-					// found user record in h2 database and is now authorized to login
+					// found user record in h2 database and is now authorized to log in
 					user = userService.getUser(tempUser.getId()).get();
 					model.addAttribute("user", user);
+					Set<UserDTO> contacts = userService.getAllContacts(user.getId());
+					model.addAttribute("contacts", contacts);
 					return "contact-finder";
 				}
 			}
