@@ -24,7 +24,7 @@ public class UserService {
 		Set<UserDTO> contacts = new HashSet<>();
 		for(User user : users) {
 			if(user.getId()!=userId) {
-				UserDTO userDTO = new UserDTO(user.getId(), user.getEmail(), user.getName());
+				UserDTO userDTO = new UserDTO(user.getId(), user.getEmail(), user.getName(), user.getImage());
 				contacts.add(userDTO);
 			}
 		}

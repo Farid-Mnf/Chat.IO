@@ -6,13 +6,16 @@ public class Contact {
 	String name;
 	long id;
 	long convId;
+
+	String image;
 	
 	public Contact() {}
 	
-	public Contact(String name, long id, long convId) {
+	public Contact(String name, long id, long convId, String image) {
 		this.name = name;
 		this.id = id;
 		this.convId = convId;
+		this.image = image;
 	}
 
 	public String getName() {
@@ -38,5 +41,12 @@ public class Contact {
 	public void setConvId(long convId) {
 		this.convId = convId;
 	}
-	
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
 }

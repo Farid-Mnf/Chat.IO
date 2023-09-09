@@ -16,6 +16,9 @@ public class User {
 	String email;
 	String password;
 	String name;
+
+	String image;
+
 	
 
 	@OneToMany(mappedBy="sender")
@@ -24,10 +27,11 @@ public class User {
 	
 	public User() {}
 	
-	public User(String email, String password, String name) {
+	public User(String email, String password, String name, String image) {
 		this.email = email;
 		this.password = password;
 		this.name = name;
+		this.image = image;
 	}
 
 
@@ -56,4 +60,7 @@ public class User {
 		this.password = password;
 	}
 
+	public String getImage() { return image; }
+
+	public void setImage(String image) { this.image = image; }
 }

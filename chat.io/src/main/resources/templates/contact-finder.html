@@ -55,7 +55,7 @@
 				<!--		Suggested Contact Item		-->
 				<div class="suggested-contact-item" th:each="contact : ${contacts}">
 					<div>
-						<img src="/images/women.jpg">
+						<img th:src="${'/images/profile-images/' + contact.image}">
 					</div>
 
 					<div>
@@ -98,7 +98,7 @@
 					if(response.length != 0){
 						document.getElementById('search-result').innerHTML = null;
 						response.forEach(usr => {
-							createContactItem(usr.name, usr.id);
+							createContactItem(usr.name, usr.id, usr.image);
 						})
 					}else{
 						document.getElementById('search-result').innerHTML = null;
@@ -111,7 +111,7 @@
 		}
 
 		// create single contact item
-		function createContactItem(contactName, contactId){
+		function createContactItem(contactName, contactId, image){
 			const searchResultItem = document.createElement('div');
 			searchResultItem.className = 'search-result-item';
 			const div1 = document.createElement('div');
@@ -130,7 +130,7 @@
 			button.appendChild(i);
 			div2.appendChild(button);
 
-			div1.innerHTML = '<img src="/images/man.png"><span> ' + contactName + '</span>';
+			div1.innerHTML = '<img src="/images/profile-images/' + image + '"><span> ' + contactName + '</span>';
 			searchResultItem.appendChild(div1);
 			searchResultItem.appendChild(div2);
 			document.getElementById('search-result').appendChild(searchResultItem);

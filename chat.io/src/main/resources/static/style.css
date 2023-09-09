@@ -72,6 +72,12 @@ p{
 	display: flex;
 	justify-content: space-between;
 }
+
+.search-result-item div img {
+	border-radius: 10px;
+	margin-right: 10px;
+}
+
 .search-result-item div button{
 	padding: 5px 10px;
 	background: #3a3b3c;
@@ -153,10 +159,9 @@ ul a {
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	margin-top: -10px;
 }
 .my-nav .my-nav-ul a{
-	padding: 10px 15px;
+	padding: 20px 15px;
 }
 ul .my-navbar-brand {
 	background: inherit !important;

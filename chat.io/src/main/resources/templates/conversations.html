@@ -47,7 +47,7 @@
 			<div class="your-contact-item" th:each="contact : ${contacts}">
 				<a th:href="@{/messages/}+${user.id}+@{/}+${contact.id}+@{/}+${contact.convId}">
 					<i class="fa-solid fa-message"></i>
-					<img src="/images/women.jpg">
+					<img th:src="${'/images/profile-images/' + contact.image}">
 					<div class="btn btn-outline-info d-grid conv-button"
 						th:text="${contact.name}"
 						href="#"

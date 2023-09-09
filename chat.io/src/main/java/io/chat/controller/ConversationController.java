@@ -28,44 +28,6 @@ public class ConversationController {
 		this.userService = userService;
 	}
 
-	// connect two users with the id of the two user connected
-//	@GetMapping("/connect/{senderId}/{receiverId}")
-//	public String makeConversation(@PathVariable(value="senderId") long senderId,
-//								   @PathVariable(value= "receiverId") long receiverId) {
-
-		// get the User object of the user who sent the connection request
-//		User user = userService.getUser(senderId).isPresent()? userService.getUser(senderId).get() : null;
-//
-//		List<Conversation> conversations = new ArrayList<>();
-//
-//		Iterable<Conversation> iterable = convService.getConversations();
-//
-//		iterable.forEach(conversations::add);
-//
-//		for (Conversation tempConv:
-//				conversations) {
-//			if(tempConv.getSender().getId() == senderId && tempConv.getReceiverId() == receiverId){
-//				System.out.println("Found one conversation----------------");
-//				assert user != null;
-//				return "redirect:/conversations/" + user.getId();
-//			}else if(tempConv.getSender().getId() == receiverId && tempConv.getReceiverId() == senderId){
-//				System.out.println("Found one conversation----------------");
-//				assert user != null;
-//				return "redirect:/conversations/" + user.getId();
-//			}
-//		}
-//
-//
-//		// create Conversation between 2 users
-//		Conversation conv = new Conversation(user,receiverId);
-//
-//		// finally save that Conversation
-//		convService.save(conv);
-//
-//		// redirect the request to conversations controller with the user id
-//		return "redirect:/conversations/" + user.getId();
-//	}
-	
 	@GetMapping("/conversations/{userId}")
 	public String getUserConversations(@PathVariable("userId") long userId, Model model) {
 		// get list of conversations
@@ -76,12 +38,12 @@ public class ConversationController {
 			if(conv.getSender().getId()==userId) {
 				// if Sender then add to contacts list
 				User user = userService.getUser(conv.getReceiverId()).get();
-				Contact contact = new Contact(user.getName(), user.getId(), conv.getId());
+				Contact contact = new Contact(user.getName(), user.getId(), conv.getId(), user.getImage());
 				contacts.add(contact);
 			}else if(conv.getReceiverId()==userId) {
 				// if Receiver then add to contacts list
 				User user = userService.getUser(conv.getSender().getId()).get();
-				Contact contact = new Contact(user.getName(), user.getId(), conv.getId());
+				Contact contact = new Contact(user.getName(), user.getId(), conv.getId(), user.getImage());
 				contacts.add(contact);
 			}
 		}

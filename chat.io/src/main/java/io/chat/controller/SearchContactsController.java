@@ -22,9 +22,6 @@ public class SearchContactsController {
 
     @PostMapping("/get-contacts")
     public Set<UserDTO> getContactsList(@RequestBody ContactInfo contactInfo){
-        System.out.println("Id: " + contactInfo.getUserId());
-        System.out.println("Name : " + contactInfo.getContactName());
-
         Iterable<UserDTO> users = userService.getAllContacts(contactInfo.getUserId());
 
         Set<UserDTO> contacts = new HashSet<>();
