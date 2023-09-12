@@ -25,7 +25,8 @@
 <ul>
 <li><b>Sign-up</b> and <b>Login</b> functionality with some basic JS validation.</li>
 <li><b>Chat box</b> page for users to make private one-to-one communication.</li>
-<li><b>Find Contacts</b> functionality to search for any user and start instant messaging with.</li>
+<li><b>Find Contacts</b> functionality with async searchable list to search for any user and start instant messaging with.</li>
 <li><b>My Contacts</b> page for my current connected with users.</li>
 <li><b>Real-time messaging</b>; so users can receive and send messages asynchronously in real-time.</li>
+
 </ul>
