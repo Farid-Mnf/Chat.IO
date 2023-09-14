@@ -6,7 +6,6 @@ import io.chat.entity.Message;
 import io.chat.service.ConversationService;
 import io.chat.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
@@ -16,7 +15,6 @@ import java.util.Date;
 @Controller
 public class ChatMessageController {
 
-
     MessageService messageService;
     ConversationService conversationService;
     @Autowired
@@ -24,7 +22,7 @@ public class ChatMessageController {
         this.messageService = messageService;
         this.conversationService = conversationService;
     }
-
+    
     @MessageMapping("/message")
     @SendTo("/topic/messages")
     public MessageContent handleMessage(MessageContent messageContent) throws InterruptedException {

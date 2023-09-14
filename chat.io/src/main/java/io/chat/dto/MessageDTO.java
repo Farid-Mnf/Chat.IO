@@ -3,10 +3,8 @@ package io.chat.dto;
 import java.util.Date;
 
 public class MessageDTO {
-
     Long id;
     Long senderId;
-
     Long conversationId;
     String content;
     Date date;
@@ -18,6 +16,7 @@ public class MessageDTO {
         this.date = date;
         this.id = id;
     }
+
 
     public Long getSenderId() {
         return senderId;

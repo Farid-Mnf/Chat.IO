@@ -39,18 +39,6 @@ public class UserService {
 		return userRepo.findById(id);
 	}
 	
-	public void deleteUser(User user) {
-		userRepo.delete(user);
-	}
-	
-	public void deleteUserById(long id) {
-		userRepo.deleteById(id);
-	}
-	
-	public boolean doUserExist(long id) {
-		return userRepo.existsById(id);
-	}
-	
 	public User saveOrUpdate(User user) {
 		return userRepo.save(user);
 	}

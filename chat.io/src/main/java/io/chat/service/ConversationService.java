@@ -10,9 +10,11 @@ import io.chat.repository.ConversationRepo;
 
 @Service
 public class ConversationService {
-	
-	@Autowired
 	ConversationRepo convRepo;
+	@Autowired
+	public ConversationService(ConversationRepo conversationRepo){
+		this.convRepo = conversationRepo;
+	}
 
 	public Iterable<Conversation> getConversations(){
 		return convRepo.findAll();
@@ -20,18 +22,6 @@ public class ConversationService {
 	
 	public Optional<Conversation> getConversation(long id) {
 		return convRepo.findById(id);
-	}
-	
-	public void deleteConversation(Conversation Conversation) {
-		convRepo.delete(Conversation);
-	}
-	
-	public void deleteConversationById(long id) {
-		convRepo.deleteById(id);
-	}
-	
-	public boolean doConversationExist(long id) {
-		return convRepo.existsById(id);
 	}
 	
 	public Conversation save(Conversation Conversation) {

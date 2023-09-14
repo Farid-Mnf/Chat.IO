@@ -1,21 +1,18 @@
 package io.chat.controller;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
+import io.chat.entity.Contact;
+import io.chat.entity.Conversation;
+import io.chat.entity.User;
+import io.chat.service.ConversationService;
+import io.chat.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import io.chat.entity.Contact;
-import io.chat.entity.Conversation;
-import io.chat.entity.User;
-import io.chat.service.ConversationService;
-import io.chat.service.UserService;
+import java.util.HashSet;
+import java.util.Set;
 
 @Controller
 public class ConversationController {
@@ -31,9 +28,9 @@ public class ConversationController {
 	@GetMapping("/conversations/{userId}")
 	public String getUserConversations(@PathVariable("userId") long userId, Model model) {
 		// get list of conversations
-		Iterable<Conversation> convs = convService.getConversations();
+		Iterable<Conversation> conversations = convService.getConversations();
 		Set<Contact> contacts = new HashSet<>();
-		for(Conversation conv : convs) {
+		for(Conversation conv : conversations) {
 			// check if user exists in either sender or receiver attribute/column
 			if(conv.getSender().getId()==userId) {
 				// if Sender then add to contacts list

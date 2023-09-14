@@ -29,7 +29,7 @@ public class SignupController {
 	public String finishSign(@ModelAttribute User user, Model model) {
 		// save user to h2 database
 		user.setImage("default-user.jpg");
-		userService.saveOrUpdate(user);
+		user = userService.saveOrUpdate(user);
 		// return that user object
 		model.addAttribute("user", user);
 		// return list of suggested contacts

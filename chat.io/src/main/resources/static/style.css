@@ -29,6 +29,7 @@ p{
 .apply-PaytoneOne{
 	font-family: PaytoneOne, monospace;
 	color: #d9d9d9;
+	font-weight: 100;
 }
 
 .apply-zefani{
@@ -185,6 +186,7 @@ ul a:nth-child(5) {
 }
 ul a i, ul a li {
 	display: inline;
+	font-family: PaytoneOne, monospace;
 }
 
 
@@ -254,6 +256,10 @@ ul a i, ul a li {
 
 .suggested-contact-item div div button{
 	margin-left: 10px;
+}
+
+#suggested .suggested-contact-item div button span{
+	font-family: PaytoneOne, monospace;
 }
 
 .suggested-contact-item .user-name{
@@ -396,14 +402,14 @@ html, body{
 }
 .bg-info{
 	border-radius: 0 0 10px 10px;
-	margin: 0 auto;
-	margin-bottom: 10px;
+	margin: 10px auto;
 	min-width: 100px;
 	display: block;
 	max-width: 200px;
 	padding-top: 10px;
 	font-size: 20px;
 	background-color: #134126 !important;
+	font-family: PaytoneOne, monospace !important;
 }
 .bg-info i{
 	font-size: 15px;

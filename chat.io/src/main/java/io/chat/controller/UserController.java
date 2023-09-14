@@ -29,7 +29,6 @@ public class UserController {
 		Set<UserDTO> contacts = userService.getAllContacts(id);
 		model.addAttribute("user", user);
 		model.addAttribute("contacts", contacts);
-		System.out.println();
 		return "contact-finder";
 	}
 }

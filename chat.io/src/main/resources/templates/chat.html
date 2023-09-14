@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8">
 	<title>Chat.io</title>
 	<link href="/css/bootstrap.min.css" rel="stylesheet">
-	<script src="/js/stomp.umd.min.js"></script>
 	<link rel="stylesheet" href="/fontawesome-free-6.4.2-web/css/fontawesome.min.css">
 	<link href="/fontawesome-free-6.4.2-web/css/brands.css" rel="stylesheet">
 	<link href="/fontawesome-free-6.4.2-web/css/solid.css" rel="stylesheet">
@@ -43,7 +42,7 @@
 		</nav>
 
 		<div id="chat-box-styled">
-			<h2 class="badge bg-info"><span th:text=${contact.name}>Contact Name</span><i class="fa-solid fa-circle"></i></h2>
+			<h2 class="badge bg-info"><span th:text=${contact.name} class="apply-PaytoneOne">Contact Name</span><i class="fa-solid fa-circle"></i></h2>
 			<div class="scroll-box" id="chat-items">
 				<div th:each="message : ${messages}" th:class="'chat-item-container '+${message.senderId==user.id ? 'chat-item-container--mine' : 'chat-item-container--his'}">
 					<!-- IF -->
@@ -92,8 +91,8 @@
 	</script>
 
 	<script src="/js/bootstrap.bundle.min.js"></script>
+	<script src="/js/stomp.umd.min.js"></script>
 	<script src="/js/app.js"></script>
 
 </body>
-
 </html>

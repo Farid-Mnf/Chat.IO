@@ -19,7 +19,6 @@ public class SearchContactsController {
     public SearchContactsController(UserService userService){
         this.userService = userService;
     }
-
     @PostMapping("/get-contacts")
     public Set<UserDTO> getContactsList(@RequestBody ContactInfo contactInfo){
         Iterable<UserDTO> users = userService.getAllContacts(contactInfo.getUserId());

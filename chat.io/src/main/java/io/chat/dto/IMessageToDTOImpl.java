@@ -9,7 +9,6 @@ public class IMessageToDTOImpl implements IMessageToDTO {
 
     @Override
     public MessageDTO messageToDTO(Long id, Long senderId, Long conversationId, String content, Date date) {
-        MessageDTO messageDTO = new MessageDTO(id, senderId, conversationId, content, date);
-        return messageDTO;
+        return new MessageDTO(id, senderId, conversationId, content, date);
     }
 }

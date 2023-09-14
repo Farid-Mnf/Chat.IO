@@ -40,13 +40,11 @@ public class ConnectRestController {
                 conversations) {
             // check if already connected according to POV of both sides
             if(tempConv.getSender().getId() == connectionInfo.getUserId() &&
-                    tempConv.getReceiverId() == connectionInfo.getContactId())
+                    tempConv.getReceiverId() == connectionInfo.getContactId()) // already connected
             {
-                System.out.println("Found one conversation----------------");
                 return;
-            }else if(tempConv.getSender().getId() == connectionInfo.getContactId() &&
+            }else if(tempConv.getSender().getId() == connectionInfo.getContactId() && // already connected
                     tempConv.getReceiverId() == connectionInfo.getUserId()){
-                System.out.println("Found one conversation----------------");
                 return;
             }
         }
@@ -56,8 +54,5 @@ public class ConnectRestController {
 
         // finally save that Conversation
         conversationService.save(conv);
-
-        // redirect the request to conversations controller with the user id
-//        return "redirect:/conversations/" + user.getId();
     }
 }
