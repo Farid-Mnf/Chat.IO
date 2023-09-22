@@ -159,7 +159,6 @@ ul a {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	align-items: center;
 }
 .my-nav .my-nav-ul a{
 	padding: 20px 15px;
@@ -167,7 +166,7 @@ ul a {
 ul .my-navbar-brand {
 	background: inherit !important;
 	padding: 0 !important;
-	margin-top:10px
+	line-height: 3;
 }
 
 #chat-io {
@@ -404,8 +403,8 @@ html, body{
 	border-radius: 0 0 10px 10px;
 	margin: 10px auto;
 	min-width: 100px;
+	width:fit-content;
 	display: block;
-	max-width: 200px;
 	padding-top: 10px;
 	font-size: 20px;
 	background-color: #134126 !important;
