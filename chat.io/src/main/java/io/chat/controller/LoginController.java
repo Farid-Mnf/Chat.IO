@@ -44,7 +44,7 @@ public class LoginController {
 					// pass that list to the model
 					model.addAttribute("contacts", contacts);
 					// show contact finder and suggested contacts template
-					return "contact-finder";
+					return "redirect:/search-contact/" + user.getId();
 				}
 			}
 		}

@@ -7,34 +7,23 @@ import javax.persistence.*;
 
 @Entity
 public class User {
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	Long id;
-	
 	@Column(unique = true)
 	String email;
 	String password;
 	String name;
-
 	String image;
-
-	
-
 	@OneToMany(mappedBy="sender")
 	Set<Conversation> conversations = new HashSet<>();
-
-	
 	public User() {}
-	
 	public User(String email, String password, String name, String image) {
 		this.email = email;
 		this.password = password;
 		this.name = name;
 		this.image = image;
 	}
-
-
 	public Long getId() {
 		return id;
 	}
@@ -59,8 +48,6 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 	public String getImage() { return image; }
-
 	public void setImage(String image) { this.image = image; }
 }

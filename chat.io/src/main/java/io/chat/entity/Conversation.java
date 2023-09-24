@@ -25,37 +25,22 @@ public class Conversation {
 		this.sender = sender;
 		this.receiverId = receiverId;
 	}
-
 	public long getId() {
 		return id;
 	}
-
 	public void setId(long id) {
 		this.id = id;
 	}
-
 	public User getSender() {
 		return sender;
 	}
-
-	public void setSender(User sender) {
-		this.sender = sender;
-	}
-
 	public long getReceiverId() {
 		return receiverId;
 	}
-
-	public void setReceiverId(long recieverId) {
-		this.receiverId = recieverId;
-	}
-
 	public List<Message> getMessages() {
 		return messages;
 	}
-
 	public void setMessages(List<Message> messages) {
 		this.messages = messages;
 	}
-
 }

@@ -1,5 +1,5 @@
 const StompClient = new StompJs.Client({
-    brokerURL : "ws://10.10.0.25:8080/chat-messages-stomp-registry"
+    brokerURL : "ws://10.210.0.225:8080/chat-messages-stomp-registry"
 });
 
 StompClient.activate();

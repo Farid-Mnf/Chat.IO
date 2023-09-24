@@ -30,11 +30,7 @@ public class SignupController {
 		// save user to h2 database
 		user.setImage("default-user.jpg");
 		user = userService.saveOrUpdate(user);
-		// return that user object
-		model.addAttribute("user", user);
-		// return list of suggested contacts
-		model.addAttribute("contacts", userService.getAllContacts(user.getId()));
-		// search for contact
-		return "contact-finder";
+		// return contact finder page
+		return "redirect:/search-contact/" + user.getId();
 	}
 }

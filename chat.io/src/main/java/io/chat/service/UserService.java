@@ -18,7 +18,6 @@ public class UserService {
 	public UserService(UserRepo userRepo){
 		this.userRepo = userRepo;
 	}
-	
 	public Set<UserDTO> getAllContacts(long userId){
 		Iterable<User> users = userRepo.findAll();
 		Set<UserDTO> contacts = new HashSet<>();
@@ -30,15 +29,12 @@ public class UserService {
 		}
 		return contacts;
 	}
-	
 	public Iterable<User> getAllUsers(){
 		return userRepo.findAll();
 	}
-	
 	public Optional<User> getUser(long id) {
 		return userRepo.findById(id);
 	}
-	
 	public User saveOrUpdate(User user) {
 		return userRepo.save(user);
 	}
