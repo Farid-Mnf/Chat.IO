@@ -36,13 +36,13 @@
 						id="InputEmail1">
 				</div>
 				<div class="mb-3">
-					<label for="InputPassword1" class="form-label label-styled apply-PaytoneOne">Password</label>
+					<label for="InputPassword1" class="form-label label-styled apply-PaytoneOne" id="pass1">Password</label>
 					<input
 						th:field="*{password}" type="password" class="form-control input-styled"
 						id="InputPassword1">
 				</div>
 				<div class="mb-3">
-					<label for="InputPassword2" class="form-label label-styled apply-PaytoneOne">Confirm Password</label>
+					<label for="InputPassword2" class="form-label label-styled apply-PaytoneOne" id="pass2">Confirm Password</label>
 					<input
 						type="password" class="form-control input-styled"
 						id="InputPassword2">
@@ -58,7 +58,8 @@
 	<script src="/js/bootstrap.bundle.min.js"></script>
 
 	<script>
-
+		const pass1Label = document.getElementById('pass1');
+		const pass2Label = document.getElementById('pass2');
 
 		const signUpButton = document.getElementById('signUpButton');
 		const passwordInput1 = document.getElementById('InputPassword1');
@@ -66,9 +67,27 @@
 		const nameInput = document.getElementById('InputName');
 		const emailInput = document.getElementById('InputEmail1');
 
+
 		[passwordInput1, passwordInput2, nameInput, emailInput].forEach(el => {
-			el.addEventListener('keyup', checkNotEmptyInputs);
+			el.addEventListener('keyup', validateForm);
 		})
+
+		function validateForm(){
+			checkNotEmptyInputs();
+			validatePasswords();
+		}
+
+		function validatePasswords(){
+			const password = passwordInput1.value;
+			const confirmPassword = passwordInput2.value;
+			let outlineColor;
+
+			if(!password || !confirmPassword) outlineColor = 'transparent';
+			else if(password !== confirmPassword) outlineColor = 'red';
+			else outlineColor = 'green';
+
+			passwordInput1.style.outline = passwordInput2.style.outline = `1px solid ${outlineColor}`;
+		}
 
 		function checkNotEmptyInputs(){
 			if(
@@ -82,15 +101,14 @@
 			}
 		}
 
-
 		function isPasswordConfirmed(){
 			const input1text = passwordInput1.value;
 			const input2text = passwordInput2.value;
 
 			if(input1text != input2text || input1text.toString().trim() == "" || input2text.toString().trim() == ""){
+
 				return false;
 			}
-
 			return true;
 		}
 
@@ -101,6 +119,7 @@
 		function disableSignUpButton(){
 			signUpButton.disabled = true;
 		}
+
 	</script>
 
 </body>

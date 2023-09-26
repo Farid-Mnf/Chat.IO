@@ -393,6 +393,10 @@ html, body{
 	margin-left: 10px;
 	color: #27824c;
 }
+
+input:focus{
+	box-shadow: none !important;
+}
 .chat-item {
 	max-width: 250px;
 }
