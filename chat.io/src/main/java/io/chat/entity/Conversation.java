@@ -1,16 +1,17 @@
 package io.chat.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Conversation {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy= GenerationType.AUTO)
 	long id;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch= FetchType.EAGER)
 	@JoinColumn(name="sender_id")
 	User sender;
 

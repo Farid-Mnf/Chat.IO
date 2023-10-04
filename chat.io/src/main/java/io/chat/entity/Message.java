@@ -1,13 +1,14 @@
 package io.chat.entity;
 
+import jakarta.persistence.*;
+
 import java.util.Date;
 
-import javax.persistence.*;
 
 @Entity
 public class Message {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy= GenerationType.AUTO)
 	long id;
 	String content;
 	Date date;

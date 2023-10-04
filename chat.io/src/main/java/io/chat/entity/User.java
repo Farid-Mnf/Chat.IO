@@ -1,14 +1,14 @@
 package io.chat.entity;
 
+import jakarta.persistence.*;
+
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.*;
-
-@Entity
+@Entity(name="Users")
 public class User {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy= GenerationType.AUTO)
 	Long id;
 	@Column(unique = true)
 	String email;

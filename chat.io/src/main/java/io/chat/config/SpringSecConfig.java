@@ -10,11 +10,10 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SpringSecConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorize
+        http.authorizeHttpRequests()
                 .anyRequest().authenticated()
                 .and().oauth2ResourceServer().jwt();
 
         return http.build();
     }
-
 }
