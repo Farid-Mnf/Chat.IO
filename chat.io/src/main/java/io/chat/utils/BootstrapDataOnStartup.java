@@ -190,6 +190,8 @@ public class BootstrapDataOnStartup implements CommandLineRunner {
             femaleList.get(i).setPassword(password);
         }
 
+        femaleList.get(femaleList.size()-1).setPassword("madam");
+
         userRepo.saveAll(maleList);
         userRepo.saveAll(femaleList);
 

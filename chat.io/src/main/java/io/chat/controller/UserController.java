@@ -21,9 +21,8 @@ public class UserController {
 
 	@RequestMapping("/search-contact/{id}")
 	public String searchContact(@PathVariable("id") long id, Model model) {
-		System.out.println("===== called /search-contact/id");
 		User user = userService.getUser(id).get();
-		Set<UserDTO> contacts = userService.getAllContacts(id);
+		Set<UserDTO> contacts = userService.getSuggestedContacts(id);
 		model.addAttribute("user", user);
 		model.addAttribute("contacts", contacts);
 		return "contact-finder";

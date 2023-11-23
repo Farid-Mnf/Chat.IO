@@ -23,7 +23,7 @@ public class ConnectRestController {
         this.userService = userService;
         this.conversationService = conversationService;
     }
-
+ 
     @PostMapping("/connect")
     public void connect(@RequestBody ConnectionInfo connectionInfo){
         // get the User object of the user who sent the connection request
