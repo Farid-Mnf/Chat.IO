@@ -3,6 +3,8 @@ package io.chat.controller;
 import io.chat.dto.UserDTO;
 import io.chat.entity.User;
 import io.chat.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,8 +30,14 @@ public class LoginController {
 		return "login";
 	}
 
+	@GetMapping("/Logout")
+	public String Logout(HttpServletRequest request){
+		request.getSession().invalidate();
+		return "index";
+	}
+
 	@PostMapping("/login")
-	public String login(@ModelAttribute("user") User user, Model model) {
+	public String login(@ModelAttribute("user") User user, Model model, HttpSession session) {
 		Iterable<User> users = userService.getAllUsers();
 		// loop through all users
 		for (User userItem : users) {
@@ -43,6 +51,8 @@ public class LoginController {
 					Set<UserDTO> contacts = userService.getAllContacts(user.getId());
 					// pass that list to the model
 					model.addAttribute("contacts", contacts);
+					// save email in current session
+					session.setAttribute("email", user.getEmail());
 					// show contact finder and suggested contacts template
 					return "redirect:/search-contact/" + user.getId();
 				}

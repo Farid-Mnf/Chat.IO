@@ -1,5 +1,6 @@
 package io.chat.controller;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,10 +27,12 @@ public class SignupController {
 	}
 
 	@RequestMapping("/new-user")
-	public String finishSign(@ModelAttribute User user, Model model) {
+	public String finishSign(@ModelAttribute User user, Model model, HttpSession session) {
 		// save user to h2 database
 		user.setImage("default-user.jpg");
 		user = userService.saveOrUpdate(user);
+		// save email in current session
+		session.setAttribute("email", user.getEmail());
 		// return contact finder page
 		return "redirect:/search-contact/" + user.getId();
 	}
