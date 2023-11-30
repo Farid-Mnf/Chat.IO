@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Chat.io</title>
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/fontawesome-free-6.4.2-web/css/fontawesome.min.css">
+	<link href="/fontawesome-free-6.4.2-web/css/brands.css" rel="stylesheet">
+	<link href="/fontawesome-free-6.4.2-web/css/solid.css" rel="stylesheet">
+	<link href="/style.css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="container" style="height: 90%">
+		<!-- Navigation -->
+		<nav class="my-nav">
+			<ul class="my-nav-ul">
+				<a class="my-navbar-brand" href="#">
+					<img src="/logo.png" alt="logo" width=50 height=50>
+					<span id="chat-io">CHAT.IO</span>
+				</a>
+				<a th:href="@{/profile/}+${user.id}">
+					<i class="fa-solid fa-user">
+					</i>
+					<li th:text="${user.name.split(' ')[0]}">User Name</li>
+				</a>
+				<a th:href="@{/search-contact/}+${user.id}">
+					<i class="fa-solid fa-magnifying-glass"></i>
+					<li>Find</li>
+				</a>
+				<a th:href="@{/conversations/}+${user.id}">
+					<i class="fa-solid fa-message"></i>
+					<li>Contacts</li>
+				</a>
+				<a th:href="@{/Logout}">
+					<i class="fa-solid fa-right-from-bracket"></i>
+					<li>Logout</li>
+				</a>
+			</ul>
+		</nav>
+
+		<div id="user-data">
+			<!--  Round profile area	-->
+			<div id="profile-picture">
+				<img th:src="${'/images/profile-images/' + user.image}"  >
+			</div>
+
+			<div id="profile-details">
+				<form action="#" th:action="@{/new-user}" th:object="${user}"
+					  method="post">
+					<div class="mb-3">
+						<label for="InputName" class="form-label label-styled apply-PaytoneOne">Name</label> <input
+							th:field="*{name}" type="text" class="form-control input-styled" id="InputName">
+					</div>
+					<div class="mb-3">
+						<label for="InputEmail1" class="form-label label-styled apply-PaytoneOne">Email</label> <input
+							th:field="*{email}" type="email" class="form-control input-styled"
+							id="InputEmail1">
+					</div>
+					<div class="mb-3">
+						<label for="InputPassword1" class="form-label label-styled apply-PaytoneOne" id="pass1">Password</label>
+						<input
+								th:field="*{password}" type="password" class="form-control input-styled"
+								id="InputPassword1">
+					</div>
+					<div class="mb-3">
+						<label for="InputPassword2" class="form-label label-styled apply-PaytoneOne" id="pass2">Confirm Password</label>
+						<input
+								type="password" class="form-control input-styled"
+								id="InputPassword2">
+					</div>
+					<input class="btn sign-up apply-PaytoneOne" id="signUpButton" type="submit" disabled value="Save">
+
+				</form>
+			</div>
+
+		</div>
+
+<!--		<div id="chat-box-styled">-->
+<!--			<h2 class="badge bg-info"><span th:text=${contact.name} class="apply-PaytoneOne">Contact Name</span><i class="fa-solid fa-circle"></i></h2>-->
+<!--			<div class="scroll-box" id="chat-items">-->
+<!--				<div th:each="message : ${messages}" th:class="'chat-item-container '+${message.senderId==user.id ? 'chat-item-container&#45;&#45;mine' : 'chat-item-container&#45;&#45;his'}">-->
+<!--					&lt;!&ndash; IF &ndash;&gt;-->
+<!--					<div th:if=${message.senderId==user.id}-->
+
+<!--						th:text="${message.content}">User</div>-->
+<!--					&lt;!&ndash; ELSE &ndash;&gt;-->
+<!--					<div th:unless=${message.senderId==user.id}-->
+
+<!--						th:text="${message.content}">Contact</div>-->
+<!--				</div>-->
+<!--			</div>-->
+
+<!--			<div class="input-group message-area">-->
+<!--				<input id="input" type="text" class="form-control"-->
+<!--					placeholder="Write a message!" aria-label="Write a message!"-->
+<!--					aria-describedby="button-addon2">-->
+<!--				<button onclick="send()"-->
+<!--						class="btn btn-outline-secondary"-->
+<!--						type="button" id="button-addon2">-->
+<!--					<i class="fa-solid fa-paper-plane"></i>-->
+<!--				</button>-->
+<!--			</div>-->
+<!--		</div>-->
+	</div>
+
+<!--	<script th:inline="javascript">-->
+<!--		// get response variables from Thymeleaf template-->
+<!--		const userId = /*[[${user.id}]]*/'User Id';-->
+<!--		const convId = /*[[${convId}]]*/'Conversation id';-->
+<!--		const receiverId = /*[[${receiverId}]]*/'receiver id';-->
+
+<!--		const input = document.getElementById('input');-->
+<!--		input.addEventListener("keyup", function (event) { // send on Enter key pressed-->
+<!--			if(event.key === "Enter") send();-->
+<!--		});-->
+
+<!--		function send() { // send input message-->
+<!--			const message = document.getElementById("input").value;-->
+<!--			if(message.toString().trim() == ""){ return; } // escape empty message-->
+
+<!--			document.getElementById("input").value = ""; // clear after message sent-->
+
+<!--			sendMessage(userId, message, convId);-->
+<!--		}-->
+<!--	</script>-->
+
+	<script src="/js/bootstrap.bundle.min.js"></script>
+	<script src="/js/stomp.umd.min.js"></script>
+	<script src="/js/app.js"></script>
+
+</body>
+</html>
