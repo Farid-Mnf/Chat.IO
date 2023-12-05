@@ -44,6 +44,12 @@
 			<!--  Round profile area	-->
 			<div id="profile-picture">
 				<img th:src="${'/images/profile-images/' + user.image}"  >
+				<button id="file-input-button"
+						onclick="document.getElementById('file-input').click()">
+					<i class="fa-solid fa-camera"></i>
+				</button>
+				<input type='file' id="file-input" style="display:none" accept="image/png, image/jpeg"/>
+
 			</div>
 
 			<div id="profile-details">
@@ -105,30 +111,51 @@
 <!--		</div>-->
 	</div>
 
-<!--	<script th:inline="javascript">-->
-<!--		// get response variables from Thymeleaf template-->
-<!--		const userId = /*[[${user.id}]]*/'User Id';-->
-<!--		const convId = /*[[${convId}]]*/'Conversation id';-->
-<!--		const receiverId = /*[[${receiverId}]]*/'receiver id';-->
+	<script th:inline="javascript">
 
-<!--		const input = document.getElementById('input');-->
-<!--		input.addEventListener("keyup", function (event) { // send on Enter key pressed-->
-<!--			if(event.key === "Enter") send();-->
-<!--		});-->
+		document.getElementById('file-input').addEventListener('change', function(e) {
+			if (e.target.files[0]) {
+				console.log('You selected ' + e.target.files[0].name);
+				const formData = new FormData();
+				formData.append("file", e.target.files[0]);
+				const userId = /*[[${user.id}]]*/'User Id';
+				formData.append("id", userId);
 
-<!--		function send() { // send input message-->
-<!--			const message = document.getElementById("input").value;-->
-<!--			if(message.toString().trim() == ""){ return; } // escape empty message-->
+				const xhr = new XMLHttpRequest();
 
-<!--			document.getElementById("input").value = ""; // clear after message sent-->
 
-<!--			sendMessage(userId, message, convId);-->
-<!--		}-->
-<!--	</script>-->
+				xhr.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						const response = this.response;
+						document.querySelector('#profile-picture img').setAttribute('src', '/images/profile-images/' + response);
+					}
+				};
+
+				xhr.open('POST', '/profileImage', true);
+				xhr.send(formData);
+			}
+		});
+
+		// get response variables from Thymeleaf template
+		// const userId = /*[[${user.id}]]*/'User Id';
+		// const convId = /*[[${convId}]]*/'Conversation id';
+		// const receiverId = /*[[${receiverId}]]*/'receiver id';
+
+		// const input = document.getElementById('input');
+		// input.addEventListener("keyup", function (event) { // send on Enter key pressed
+		// 	if(event.key === "Enter") send();
+		// });
+		//
+		// function send() { // send input message
+		// 	const message = document.getElementById("input").value;
+		// 	if(message.toString().trim() == ""){ return; } // escape empty message
+		//
+		// 	document.getElementById("input").value = ""; // clear after message sent
+		//
+		// 	sendMessage(userId, message, convId);
+		// }
+	</script>
 
 	<script src="/js/bootstrap.bundle.min.js"></script>
-	<script src="/js/stomp.umd.min.js"></script>
-	<script src="/js/app.js"></script>
-
 </body>
 </html>

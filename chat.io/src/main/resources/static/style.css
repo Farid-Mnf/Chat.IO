@@ -608,6 +608,9 @@ ul a:hover{
 	padding: 50px 0;
 	border-radius: 10px;
 }
+#profile-picture{
+	position: relative;
+}
 
 #profile-picture img{
 	border-radius: 100%;
@@ -615,6 +618,27 @@ ul a:hover{
 	height:200px;
 }
 
+#profile-picture #file-input-button{
+	padding: 5px 10px;
+	border: none;
+	font-family: 'PaytoneOne', monospace;
+	display:block;
+	position: absolute;
+	background-color: #27824c;
+	bottom: 10%;
+	right: 0;
+	border-radius: 100%;
+	font-size: 29px;
+}
+
+#profile-picture #file-input-button:hover{
+	background-color: #206b3e;
+}
+
 #profile-details form .form-control{
 	display: inline !important;
+}
+
+#file-input{
+
 }
