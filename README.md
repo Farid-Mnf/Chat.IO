@@ -28,6 +28,7 @@
 <li><b>Find Contacts</b> functionality with async searchable list to search for any user and start instant messaging with.</li>
 <li><b>My Contacts</b> page for my current connected with users.</li>
 <li><b>Real-time messaging</b>; so users can receive and send messages asynchronously in real-time.</li>
+<li><b>Update Profile Picture functionality</b> to allow users to select a local image to change their profile picture.</li>
 </ul>
 
 ## Main Web Pages:
