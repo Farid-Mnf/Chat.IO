@@ -1,5 +1,7 @@
 # <u>Chat.io</u>
-## A real-time instant one-to-one private chat web application using Spring Boot.
+## A real-time instant one-to-one private chat web application using Java and Spring framework.
+## Demo Video [![Watch the video](https://img.youtube.com/vi/gH92s4Llhvo/maxresdefault.jpg)](https://youtu.be/gH92s4Llhvo)
+
 
 
 ## <u>I created the back-end using these technologies:</u>
